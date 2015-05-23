@@ -35,13 +35,16 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevi
         $http({
             url: "http://localhost:3000/users",
             method: "GET",
-            params: {email: "email", password: "biking"}
+            params: {email: email, password: password}
         }).error(function(data){
-            console.log("error");
-            console.log(data);
+
         }).success(function(data){
-            console.log("success");
-            console.log(data);
+            if(data['id'] == null){
+                //Redirection vers l'écran de connexion
+            }else{
+                //L'utilisateur est connecté
+                $scope.user_id = data['id']
+            }
         });
 
     });

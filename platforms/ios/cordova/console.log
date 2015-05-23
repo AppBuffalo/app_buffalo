@@ -341,3 +341,66 @@
 2015-05-23 15:42:15.947 buffalo[72353:2955450] error retrieving value for key 'email' : (null)
 2015-05-23 15:42:15.975 buffalo[72353:2955450] error
 2015-05-23 15:42:15.976 buffalo[72353:2955450] null
+2015-05-23 16:13:00.240 buffalo[74040:3091100] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/tgeselle/Library/Developer/CoreSimulator/Devices/C777BD8C-EF7B-47A1-B9C9-97A22347C50D/data/Containers/Data/Application/B006E9C6-D6D3-4712-8298-803F4D0BC0F9/Library/Cookies/Cookies.binarycookies
+2015-05-23 16:13:00.759 buffalo[74040:3091100] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-23 16:13:00.760 buffalo[74040:3091100] Multi-tasking -> Device: YES, App: YES
+2015-05-23 16:13:00.787 buffalo[74040:3091100] Unlimited access to network resources
+2015-05-23 16:13:01.450 buffalo[74040:3091100] [CDVTimer][keyboard] 0.120997ms
+2015-05-23 16:13:01.700 buffalo[74040:3091100] [CDVTimer][splashscreen] 249.657989ms
+2015-05-23 16:13:01.710 buffalo[74040:3091100] [CDVTimer][file] 9.611964ms
+2015-05-23 16:13:01.710 buffalo[74040:3091100] [CDVTimer][TotalPluginStartup] 260.894001ms
+2015-05-23 16:13:01.923 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:13:02.542 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:13:02.823 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:13:03.849 buffalo[74040:3091100] error
+2015-05-23 16:13:03.849 buffalo[74040:3091100] null
+2015-05-23 16:16:55.898 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:16:56.053 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:16:56.185 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:16:57.021 buffalo[74040:3091100] success
+2015-05-23 16:16:57.021 buffalo[74040:3091100] {"id":null}
+2015-05-23 16:17:42.548 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:17:42.721 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:17:42.857 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:17:42.914 buffalo[74040:3091100] success
+2015-05-23 16:18:03.154 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:18:03.520 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:18:03.635 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:18:03.646 buffalo[74040:3091100] success
+2015-05-23 16:27:08.180 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:27:08.885 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:27:09.263 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:27:09.409 buffalo[74040:3091100] success
+2015-05-23 16:29:05.686 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:29:05.884 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:29:05.916 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:30:07.057 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:30:07.186 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:30:07.303 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:30:31.599 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:30:31.770 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:30:31.824 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:32:50.548 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:32:50.805 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:32:50.864 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:33:22.289 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:33:22.531 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:33:22.568 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:33:28.420 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:33:28.501 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:33:28.598 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:33:47.634 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:33:47.854 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:33:47.891 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:33:59.704 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:33:59.803 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:33:59.936 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:34:16.926 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:34:17.108 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:34:17.146 buffalo[74040:3091100] error retrieving value for key 'email' : (null)
+2015-05-23 16:35:29.099 buffalo[74040:3213522] Communications error: <OS_xpc_error: <error: 0x2ebe5f4> { count = 1, contents =
+	"XPCErrorDescription" => <string: 0x2ebe83c> { length = 22, contents = "Connection interrupted" }
+}>
+2015-05-23 16:37:08.287 buffalo[74040:3091100] Resetting plugins due to page load.
+2015-05-23 16:37:08.448 buffalo[74040:3091100] Finished load of: http://192.168.0.22:8100/#/main
+2015-05-23 16:37:08.753 buffalo[74040:3091100] error retrieving value for key 'email' : (null)

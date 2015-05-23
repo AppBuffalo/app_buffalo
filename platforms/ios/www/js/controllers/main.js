@@ -33,7 +33,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevi
         password = CryptoJS.SHA3(password).toString(CryptoJS.enc.Base64);
 
         $http({
-            url: "http://localhost:3000/users",
+            url: "http://92.222.82.233/users",
             method: "GET",
             params: {email: "email", password: "biking"}
         }).error(function(data){

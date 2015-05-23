@@ -1,4 +1,4 @@
-controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevice, $cordovaKeychain, $http){
+controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevice, $cordovaKeychain, $http, $state){
 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
@@ -33,17 +33,20 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevi
         password = CryptoJS.SHA3(password).toString(CryptoJS.enc.Base64);
 
         $http({
-            url: "http://localhost:3000/users",
+            url: "http://92.222.82.233/users",
             method: "GET",
             params: {email: email, password: password}
         }).error(function(data){
-
+            console.log("erreur");
         }).success(function(data){
-            if(data['id'] == null){
+            if(data['id'] === null){
                 //Redirection vers l'écran de connexion
+                console.log("ok");
+                $state.go("login")
             }else{
                 //L'utilisateur est connecté
-                $scope.user_id = data['id']
+                console.log("pas ok");
+                $scope.user_id = data;
             }
         });
 

@@ -5,12 +5,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-  .state('main', {
-    url: '/main',
-    templateUrl: 'templates/main.html',
-    controller: 'MainCtrl'
-  });
+    .state('main', {
+      url: '/main',
+      templateUrl: 'templates/main.html',
+      controller: 'MainCtrl'
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main');

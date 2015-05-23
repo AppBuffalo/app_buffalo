@@ -37,15 +37,16 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevi
             method: "GET",
             params: {email: email, password: password}
         }).error(function(data){
-            console.log("erreur");
+            console.log("Erreur réseau");
+            $state.go('homeScreen')
         }).success(function(data){
             if(data['id'] === null){
                 //Redirection vers l'écran de connexion
-                console.log("ok");
-                $state.go("login")
+                console.log("Id non trouvé");
+                $state.go("homeScreen")
             }else{
                 //L'utilisateur est connecté
-                console.log("pas ok");
+                console.log("Connecté !");
                 $scope.user_id = data;
             }
         });

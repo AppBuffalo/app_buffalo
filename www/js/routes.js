@@ -10,6 +10,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/main.html',
       controller: 'MainCtrl'
     })
+    .state('homeScreen', {
+      url: '/homeScreen',
+      templateUrl: 'templates/homeScreen.html',
+      controller: 'HomeScreenCtrl'
+    })
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',

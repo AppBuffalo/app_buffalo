@@ -1,4 +1,8 @@
 <ion-content class="padding">
     <p>Main</p>
-    <p>{{ user_id }}</p>
+    <td-cards>
+        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
+            <img ng-src="{{ card.url }}">
+        </td-card>
+    </td-cards>
 </ion-content>

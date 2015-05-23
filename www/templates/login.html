@@ -1,3 +1,14 @@
 <ion-content>
-    <p>Login</p>
+    <div class="list">
+        <label class="item item-input">
+            <input type="email" placeholder="Email" ng-model="user.email" />
+        </label>
+        <label class="item item-input">
+            <input type="password" placeholder="Password" ng-model="user.password">
+        </label>
+        <button class="button button-positive" on-tap="login(user)">
+            Connexion
+        </button>
+        <p>{{ errors }}</p>
+    </div>
 </ion-content>

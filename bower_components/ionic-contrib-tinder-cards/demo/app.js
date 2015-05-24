@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'ionic.contrib.ui.tinderCards' is found in ionic.tdcards.js
-angular.module('buffalo', ['ionic', 'ionic.contrib.ui.tinderCards'])
+angular.module('buffalo', ['ionic', 'ionic.contrib.ui.tinderCards', 'directives'])
 
 .directive('noScroll', function() {
 

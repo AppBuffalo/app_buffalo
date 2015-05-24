@@ -31,6 +31,26 @@
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
+                            "count": 1
                         }
                     ],
                     "/widget": [
@@ -52,24 +72,30 @@
                     "AssetsLibrary.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 2
                         }
                     ],
                     "MobileCoreServices.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 2
                         }
                     ],
                     "CoreGraphics.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 3
                         }
                     ],
                     "CoreLocation.framework": [
                         {
                             "xml": false,
+                            "count": 2
+                        }
+                    ],
+                    "ImageIO.framework": [
+                        {
+                            "xml": true,
                             "count": 1
                         }
                     ]
@@ -80,7 +106,7 @@
                     "NSLocationWhenInUseUsageDescription": [
                         {
                             "xml": "<string />",
-                            "count": 1
+                            "count": 2
                         }
                     ]
                 }
@@ -110,6 +136,12 @@
             "PACKAGE_NAME": "com.ionicframework.buffalo220346"
         },
         "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
+        },
+        "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "com.ionicframework.buffalo220346"
         }
     },

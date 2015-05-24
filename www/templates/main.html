@@ -1,8 +1,15 @@
-<ion-content class="padding">
-    <p>Main</p>
+<ion-content scroll="false">
+    <i class="icon ion-ios-camera-outline main-camera" on-tap="takePicture()"></i>
+    <i class="icon ion-navicon main-settings"></i>
     <td-cards>
         <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
             <img ng-src="{{ card.url }}">
+            <div class="comment">
+                <p align="center">{{ card.comment }}</p>
+            </div>
+            <div class="score">
+                <p align="center">{{ card.score }}</p>
+            </div>
         </td-card>
     </td-cards>
 </ion-content>

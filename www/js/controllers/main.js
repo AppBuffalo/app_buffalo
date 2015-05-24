@@ -1,14 +1,15 @@
-controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevice, $cordovaKeychain, $http, $state){
+controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice,
+                                            $http, $state, $window, $cordovaCamera){
 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
-        //Si oui alors les identifiants de l'utilisateur (email et password) doivent être stocké dans l'app
+        //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
         login();
+        geoLoc();
     });
 
     $scope.cards = [
-        {name: "test", url: "http://www.menucool.com/slider/prod/image-slider-2.jpg"},
-        {name: "test2", url: "http://blog.jimdo.com/wp-content/uploads/2014/01/tree-247122.jpg"}
+        {url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125}
     ];
 
     $scope.cardDestroyed = function(index) {
@@ -20,54 +21,60 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevi
         $scope.cards.push(newCard);
     };
 
+    $scope.redirectToGallery = function(){
+        $state.go('/photos/gallery');
+    };
+
+    $scope.takePicture = function(){
+       console.log("take a picture and sell it to his parents")
+    };
 
 
     function login(){
-        $scope.email = "";
-        $scope.password = "";
+        //Récupération de l'id dans le localStorage
+        $rootScope.user_id = window.localStorage['user_id'] || "";
 
-        //Si ios : Stockage dans le Keychain (stockage sécurisé et encrypté)
-        if($cordovaDevice.getPlatform() === "iOS"){
-            var kc = new Keychain();
-
-            kc.getForKey(function(value){
-                $scope.email = value;
-
-                kc.getForKey(function(value){
-                    $scope.password = value;
-
-                    sendRequestLogin($scope.email, $scope.password);
-                }, function(error){
-                    $state.go('homeScreen');
-                }, "password", "buffalo")
-            }, function(error){
-                $state.go('homeScreen');
-            }, "email", "buffalo");
-        }else{
-            //Sinon récupération dans le localStorage
-            $scope.email = window.localStorage['email'] || "";
-            $scope.password = window.localStorage['password'] || "";
-            sendRequestLogin($scope.email, $scope.password);
-        }
-    }
-
-    //Vérification si les identifiants sont corrects avec un appel API (doit renvoyé l'id user)
-    function sendRequestLogin(email, password){
+        //Vérification de la corresponde entre l'id et les informations du téléphone (device_id et device_type)
         $http({
             url: "http://92.222.82.233/users",
             method: "GET",
-            params: {email: email, password: password}
+            params: {device_id: $cordovaDevice.getUUID().toString(), device_type: $cordovaDevice.getPlatform().toString()}
         }).error(function(data){
-            $state.go('homeScreen')
+            console.log(data);
         }).success(function(data){
-            if(data['id'] === null){
-                //Redirection vers l'écran de connexion
-                $state.go("homeScreen")
-                $scope.user_id = data
+            if(data['id'] === $rootScope.user_id){
+                $rootScope.user_id = data['id'];
+                console.log("User loggé")
             }else{
-                //L'utilisateur est connecté
-                $scope.user_id = data['id'];
+                //L'utilisateur n'existe pas ou ses infos sont incorrects
+                //Dans ce cas on enregistre un nouvel utilisateur
+                sendRegistration();
             }
         });
     }
+
+    function sendRegistration(){
+        $http({
+            url: "http://92.222.82.233/users",
+            method: "POST",
+            params: {device_id: $cordovaDevice.getUUID().toString(), device_type: $cordovaDevice.getPlatform().toString()}
+        }).error(function(data){
+            console.log(data);
+            $rootScope.user_id = "";
+        }).success(function(data){
+            $rootScope.user_id = data['id'];
+            window.localStorage['user_id'] = data['id'];
+        });
+    }
+
+    function geoLoc(){
+        $window.navigator.geolocation.getCurrentPosition(function(position) {
+            $scope.$apply(function() {
+                $scope.lat = position.coords.latitude;
+                $scope.long = position.coords.longitude;
+            });
+        });
+    }
+
+
 });

@@ -10,20 +10,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/main.html',
       controller: 'MainCtrl'
     })
-    .state('homeScreen', {
-      url: '/homeScreen',
-      templateUrl: 'templates/homeScreen.html',
-      controller: 'HomeScreenCtrl'
-    })
-    .state('register', {
-      url: '/register',
-      templateUrl: 'templates/register.html',
-      controller: 'RegisterCtrl'
-    })
-    .state('login', {
-      url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
+    .state('/photos/camera', {
+        url: '/photos/camera',
+        controller: 'CameraCtrl'
+      })
+    .state('/photos/gallery', {
+      url: '/photos/gallery',
+      templateUrl: '/templates/photos/gallery.html',
+      controller: 'GalleryCtrl'
     });
 
   // if none of the above states are matched, use this as the fallback

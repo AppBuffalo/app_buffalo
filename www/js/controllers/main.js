@@ -9,7 +9,8 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     });
 
     $scope.cards = [
-        {url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125}
+        {url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
+        {url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
     ];
 
     $scope.cardDestroyed = function(index) {

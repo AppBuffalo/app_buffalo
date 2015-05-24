@@ -3,6 +3,7 @@
     <i class="icon ion-navicon main-settings"></i>
     <td-cards>
         <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
+            <div class="no-text">NOPE</div>
             <img ng-src="{{ card.url }}">
             <div class="comment">
                 <p align="center">{{ card.comment }}</p>
@@ -10,6 +11,7 @@
             <div class="score">
                 <p align="center">{{ card.score }}</p>
             </div>
+            <div class="yes-text">LIKE</div>
         </td-card>
     </td-cards>
 </ion-content>

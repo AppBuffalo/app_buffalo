@@ -286,6 +286,8 @@
           var el = $element[0];
           var leftText = el.querySelector('.no-text');
           var rightText = el.querySelector('.yes-text');
+          var score = el.querySelector("#score-1");
+
           
           // Force hardware acceleration for animation - better performance on first touch
           el.style.transform = el.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
@@ -302,6 +304,7 @@
                 if (amt < 0) {
                   if (self.leftText) self.leftText.style.opacity = fadeFn(-amt);
                   if (self.rightText) self.rightText.style.opacity = 0;
+                  score.innerHTML("459");
                 } else {
                   if (self.leftText) self.leftText.style.opacity = 0;
                   if (self.rightText) self.rightText.style.opacity = fadeFn(amt);

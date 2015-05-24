@@ -4,13 +4,16 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
         //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
-        login();
-        geoLoc();
+        //login();
+        //geoLoc();
+        setTimeout(function(){
+            document.getElementById("score-1").innerHTML = 56456464;
+        }, 1000);
     });
 
     $scope.cards = [
-        {url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-        {url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
+        {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
+        {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
     ];
 
     $scope.cardDestroyed = function(index) {

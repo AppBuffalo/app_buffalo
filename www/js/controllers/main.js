@@ -82,20 +82,40 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
     function getImage(img) {
 
+        console.log("GETIMAGE IMG URL : "+img);
+        angular.forEach($scope.cards,function(card2)
+        {
+           console.log( card2.url.toString());
+            console.log( card2.comment.toString());
+            console.log( card2.score.toString());
+        });
         var card;
         if(img.toString().length>0) {
             card = {url: img, comment: "zamel zamel" + (Math.random() * 100).toString(), score: 0};
             $scope.cards.push(card);
             console.log("added negro");
+
+
+            angular.forEach($scope.cards,function(card2)
+            {
+                console.log( card2.url.toString());
+                console.log( card2.comment.toString());
+                console.log( card2.score.toString());
+            });
+
         }
         else{
             conosle.log("nope")
         }
+
+
+
         }
 
     $scope.takePicture =function() {
         navigator.camera.getPicture(function(imageURI) {
 
+            console.log("IMAGEURL  :"+imageURI);
              getImage(imageURI);
             // imageURI is the URL of the image that we can use for
             // an <img> element or backgroundImage.

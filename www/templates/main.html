@@ -1,7 +1,7 @@
-<ion-content scroll="false">
+<ion-content  style="background-color: #009689" scroll="false">
     <i class="icon ion-ios-camera-outline main-camera" on-tap="takePicture()"></i>
     <i class="icon ion-navicon main-settings"></i>
-    <td-cards>
+    <td-cards >
         <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
             <div class="no-text">NOPE</div>
             <img ng-src="{{ card.url }}">

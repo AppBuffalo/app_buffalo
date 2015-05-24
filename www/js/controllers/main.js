@@ -8,6 +8,8 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         geoLoc();
     });
 
+
+
     $scope.cards = [
         {url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
         {url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
@@ -29,6 +31,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     $scope.takePicture = function(){
        console.log("take a picture and sell it to his parents")
     };
+    var destinationType;
 
 
     function login(){
@@ -76,6 +79,37 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
             });
         });
     }
+
+    function getImage(img) {
+
+        var card;
+        if(img.toString().length>0) {
+            card = {url: img, comment: "zamel zamel" + (Math.random() * 100).toString(), score: 0};
+            $scope.cards.push(card);
+            console.log("added negro");
+        }
+        else{
+            conosle.log("nope")
+        }
+        }
+
+    $scope.takePicture =function() {
+        navigator.camera.getPicture(function(imageURI) {
+
+             getImage(imageURI);
+            // imageURI is the URL of the image that we can use for
+            // an <img> element or backgroundImage.
+
+        }, function(err) {
+
+            console.log("boooom");
+            // Ruh-roh, something bad happened
+
+        });
+    };
+
+
+
 
 
 });

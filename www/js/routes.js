@@ -20,6 +20,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/register.html',
       controller: 'RegisterCtrl'
     })
+    .state('picture', {
+      url: '/picture',
+      templateUrl: 'templates/picture.html',
+      controller: 'PictureCtrl'
+    })
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',

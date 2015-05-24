@@ -21,4 +21,10 @@ app.run(function($ionicPlatform) {
   });
 });
 
-var controllers = angular.module('buffalo.controllers', []);
+var services = angular.module('buffalo.services',[]);
+var controllers = angular.module('buffalo.controllers', ['buffalo.services']);
+
+controllers.config(function($compileProvider){
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+});
+

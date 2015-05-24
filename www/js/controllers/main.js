@@ -1,4 +1,4 @@
-controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevice, $cordovaKeychain, $http, $state){
+controllers.controller('MainCtrl', function($rootScope, $scope, $ionicPlatform, $cordovaDevice, $cordovaKeychain, $http, $state, Camera){
 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
@@ -70,4 +70,21 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $cordovaDevi
             }
         });
     }
+
+
+    $scope.getPhoto = function() {
+        Camera.getPicture().then(function(imageURI) {
+            //$rootScope.picTaken = "data:image/jpeg;base64," + imageURI;
+            $rootScope.picTaken = imageURI;
+            console.log($rootScope.picTaken);      
+            $state.go('picture');
+        }, function(err) {
+            console.err(err);
+        }, {
+            quality: 75,
+            targetWidth: 320,
+            targetHeight: 320,
+            saveToPhotoAlbum: false
+        });
+    };
 });

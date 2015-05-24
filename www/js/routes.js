@@ -15,6 +15,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/homeScreen.html',
       controller: 'HomeScreenCtrl'
     })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register.html',
+      controller: 'RegisterCtrl'
+    })
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',

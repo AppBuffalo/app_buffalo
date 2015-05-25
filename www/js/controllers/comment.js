@@ -28,7 +28,7 @@ controllers.controller('CommentCtrl', function($scope, $stateParams, $ionicPlatf
         };
 
         $cordovaFileTransfer
-            .upload("cloudinary://319843273551643:cFGMpedaTrczjCgQUhgUmbQLHCw@dbqbmbcvg", $scope.image_uri, uploadOptions)
+            .upload("https://api.cloudinary.com/v1_1/dbqbmbcvg/image/upload", $scope.image_uri, uploadOptions)
             .then(function(result) {
                 console.log("OK");
             }, function(err) {

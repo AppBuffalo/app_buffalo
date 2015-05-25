@@ -1,11 +1,11 @@
 controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice,
-                                            $http, $state, $window, $cordovaCamera){
+                                            $http, $state, $window, $cordovaCamera, InterfaceAPI){
 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
         //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
-        //login();
-        //geoLoc();
+        login();
+        geoLoc();
         setTimeout(function(){
             document.getElementById("score-1").innerHTML = 56456464;
         }, 1000);
@@ -13,7 +13,12 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
     $scope.cards = [
         {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-        {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
+        {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69},
+        {id: 3, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
+        {id: 4, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69},
+        {id: 5, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
+
+
     ];
 
     $scope.cardDestroyed = function(index) {
@@ -23,6 +28,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     $scope.cardSwiped = function(index) {
         var newCard = // new card data
         $scope.cards.push(newCard);
+        console.log("INDEX:"+index);
     };
 
     $scope.redirectToGallery = function(){
@@ -35,40 +41,34 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
 
     function login(){
-        //Récupération de l'id dans le localStorage
-        $rootScope.user_id = window.localStorage['user_id'] || "";
 
-        //Vérification de la corresponde entre l'id et les informations du téléphone (device_id et device_type)
-        $http({
-            url: "http://92.222.82.233/users",
-            method: "GET",
-            params: {device_id: $cordovaDevice.getUUID().toString(), device_type: $cordovaDevice.getPlatform().toString()}
-        }).error(function(data){
-            console.log(data);
-        }).success(function(data){
-            if(data['id'] === $rootScope.user_id){
-                $rootScope.user_id = data['id'];
-                console.log("User loggé")
-            }else{
-                //L'utilisateur n'existe pas ou ses infos sont incorrects
-                //Dans ce cas on enregistre un nouvel utilisateur
+        InterfaceAPI.login($cordovaDevice.getUUID().toString(),$cordovaDevice.getPlatform().toString())
+        .then( function(data) {
+
+                if(data['id'] === null){
                 sendRegistration();
+
+            }else{
+                $rootScope.user_id = data['id'];
             }
+
         });
     }
 
     function sendRegistration(){
-        $http({
-            url: "http://92.222.82.233/users",
-            method: "POST",
-            params: {device_id: $cordovaDevice.getUUID().toString(), device_type: $cordovaDevice.getPlatform().toString()}
-        }).error(function(data){
+
+        console.log("register");
+
+        InterfaceAPI.register($cordovaDevice.getUUID().toString(),$cordovaDevice.getPlatform().toString())
+            .then(function(data){
+                $rootScope.user_id = data['id'];
+            window.localStorage['user_id'] = data['id'];
+
+        }, function(data)        {
             console.log(data);
             $rootScope.user_id = "";
-        }).success(function(data){
-            $rootScope.user_id = data['id'];
-            window.localStorage['user_id'] = data['id'];
         });
+
     }
 
     function geoLoc(){

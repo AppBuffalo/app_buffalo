@@ -20,8 +20,8 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
         //console.log("SWIPE LEFT NEGRO");
 
-        InterfaceAPI.swipeNope(3,card_id)
-        //InterfaceAPI.swipeNope($scope.user_id,card_id)
+        //InterfaceAPI.swipeNope(3,card_id)
+        InterfaceAPI.swipeNope($scope.user_id,card_id)
             .then( function() {
              //   console.log(' THEN NOPE');
         });
@@ -34,8 +34,8 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
        // console.log("SWIPE RIGHT NEGRO");
 
 
-        InterfaceAPI.swipeLike(3,card_id)
-        //InterfaceAPI.swipeLike($scope.user_id,card_id)
+        //InterfaceAPI.swipeLike(3,card_id)
+        InterfaceAPI.swipeLike($scope.user_id,card_id)
             .then( function() {
 
              //   console.log('THEN LIKE');
@@ -65,10 +65,15 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
 
     $scope.refreshPhotos = function(){
-        //InterfaceAPI.getPhotos($scope.user_id,5,4.5) // test avec l'user ID
+
+
+        if ($scope.lat==undefined)
+        {
+            dataSample();
+        }
+        //InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
         InterfaceAPI.getPhotos( 6,$scope.lat, $scope.long) // test avec un user ID en dur
             .then( function(data) {
-
 
 //                console.log("GETPHOTOS :   " + JSON.stringify(data, null, 4));
 
@@ -93,10 +98,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
                 else
                 {
                     console.log("datanull");
-                    $scope.cards = [
-                        {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-                        {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
-                    ];
+                    dataSample();
                 }
 
 
@@ -106,6 +108,16 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
             });
     };
+
+    function dataSample()
+    {
+        console.log("dataSample");
+        $scope.cards = [
+            {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
+            {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
+        ];
+    }
+
 
     $scope.uploadPhotos = function(){
         InterfaceAPI.uploadPhoto($scope.user_id,$scope.lat, $scope.long,'http://i.imgur.com/mheXQuK.jpg?1','')
@@ -146,15 +158,31 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     }
 
     function geoLoc(){
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                $scope.lat = position.coords.latitude;
-                $scope.long = position.coords.longitude;
-                $scope.uploadPhotos();
-                $scope.refreshPhotos();
-             }
-        );
-        return 0;
+
+
+
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        function success(pos) {
+            var crd = pos.coords;
+            $scope.lat = crd.latitude;
+            $scope.long = crd.longitude;
+            //$scope.uploadPhotos();
+            $scope.refreshPhotos();
+        }
+
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+            $scope.refreshPhotos();
+
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+
     }
 
 

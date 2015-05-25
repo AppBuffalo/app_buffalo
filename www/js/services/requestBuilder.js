@@ -23,6 +23,7 @@ angular.module('buffalo')
         function getRequestPromise(request){
             var deferred = $q.defer();
 
+            console.log(JSON.stringify(request, null, 4));
 
             $http(request)
             .success(function(data) {

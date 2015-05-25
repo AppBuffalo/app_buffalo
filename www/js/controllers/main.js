@@ -13,22 +13,34 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
     $scope.cards = [
         {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-        {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69},
-        {id: 3, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-        {id: 4, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69},
-        {id: 5, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-
-
+        {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
     ];
 
     $scope.cardDestroyed = function(index) {
         $scope.cards.splice(index, 1);
     };
 
-    $scope.cardSwiped = function(index) {
-        var newCard = // new card data
-        $scope.cards.push(newCard);
-        console.log("INDEX:"+index);
+    $scope.cardSwipedLeft = function(card_id) {
+        InterfaceAPI.swipeNope($rootScope.user_id,card_id)
+            .then( function() {
+
+
+                console.log('NOPE');
+
+
+        });
+
+    };
+
+    $scope.cardSwipedRight = function(card_id) {
+        InterfaceAPI.swipeLike($rootScope.user_id,card_id)
+            .then( function() {
+
+                console.log('LIKE');
+
+            });
+
+
     };
 
     $scope.redirectToGallery = function(){

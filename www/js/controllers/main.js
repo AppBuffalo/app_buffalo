@@ -6,38 +6,40 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
         login();
         geoLoc();
-        setTimeout(function(){
-            document.getElementById("score-1").innerHTML = 56456464;
-        }, 1000);
 
-    });
+        });
 
-    $scope.cards = [
-        {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-        {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
-    ];
+
 
     $scope.cardDestroyed = function(index) {
         $scope.cards.splice(index, 1);
     };
 
-    $scope.cardSwipedLeft = function(card_id) {
-        InterfaceAPI.swipeNope($rootScope.user_id,card_id)
+    $scope.cardSwipedLeft = function(index,card_id) {
+        $scope.cards.splice(index, 1);
+
+        //console.log("SWIPE LEFT NEGRO");
+
+        InterfaceAPI.swipeNope(3,card_id)
+        //InterfaceAPI.swipeNope($scope.user_id,card_id)
             .then( function() {
-
-
-                console.log('NOPE');
-
-
+             //   console.log(' THEN NOPE');
         });
 
     };
 
-    $scope.cardSwipedRight = function(card_id) {
-        InterfaceAPI.swipeLike($rootScope.user_id,card_id)
+    $scope.cardSwipedRight = function(index,card_id) {
+
+        $scope.cards.splice(index, 1);
+       // console.log("SWIPE RIGHT NEGRO");
+
+
+        InterfaceAPI.swipeLike(3,card_id)
+        //InterfaceAPI.swipeLike($scope.user_id,card_id)
             .then( function() {
 
-                console.log('LIKE');
+             //   console.log('THEN LIKE');
+
 
             });
 
@@ -62,6 +64,58 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     };
 
 
+    $scope.refreshPhotos = function(){
+        //InterfaceAPI.getPhotos($scope.user_id,5,4.5) // test avec l'user ID
+        InterfaceAPI.getPhotos( 6,$scope.lat, $scope.long) // test avec un user ID en dur
+            .then( function(data) {
+
+
+//                console.log("GETPHOTOS :   " + JSON.stringify(data, null, 4));
+
+                if (data.length>0) {
+                    $scope.cards = [];
+                    var newCard = {id: '', url: '', comment: '', score: 0};
+                    angular.forEach(data, function (card) {
+
+                        if(card.comment==null)
+                        {
+                            card.comment='';
+                        }
+
+                        newcard = {id: card.id.toString(), url: card.s3_url.toString(), comment: card.comment.toString(), score :card.score};
+                      //  console.log("NEWCARD :   " + JSON.stringify(newcard, null, 4));
+                        $scope.cards.push(newcard);
+
+                    });
+                    //console.log("SCOPE.CARDS :   " + JSON.stringify($scope.cards, null, 4));
+
+                }
+                else
+                {
+                    console.log("datanull");
+                    $scope.cards = [
+                        {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
+                        {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
+                    ];
+                }
+
+
+
+
+
+
+            });
+    };
+
+    $scope.uploadPhotos = function(){
+        InterfaceAPI.uploadPhoto($scope.user_id,$scope.lat, $scope.long,'http://i.imgur.com/mheXQuK.jpg?1','')
+            .then( function(data) {
+                console.log("uploadPHOTOS :   "+JSON.stringify(data, null, 4));
+
+            });
+    };
+
+
     function login(){
 
         InterfaceAPI.login($cordovaDevice.getUUID().toString(),$cordovaDevice.getPlatform().toString())
@@ -71,7 +125,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
                 sendRegistration();
 
             }else{
-                $rootScope.user_id = data['id'];
+                $scope.user_id = data['id'];
             }
 
         });
@@ -79,27 +133,28 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
     function sendRegistration(){
 
-        console.log("register");
-
         InterfaceAPI.register($cordovaDevice.getUUID().toString(),$cordovaDevice.getPlatform().toString())
             .then(function(data){
-                $rootScope.user_id = data['id'];
+                $scope.user_id = data['id'];
             window.localStorage['user_id'] = data['id'];
 
         }, function(data)        {
             console.log(data);
-            $rootScope.user_id = "";
+            $scope.user_id = "";
         });
 
     }
 
     function geoLoc(){
-        $window.navigator.geolocation.getCurrentPosition(function(position) {
-            $scope.$apply(function() {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
                 $scope.lat = position.coords.latitude;
                 $scope.long = position.coords.longitude;
-            });
-        });
+                $scope.uploadPhotos();
+                $scope.refreshPhotos();
+             }
+        );
+        return 0;
     }
 
 

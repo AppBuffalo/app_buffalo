@@ -304,7 +304,7 @@
                 if (amt < 0) {
                   if (self.leftText) self.leftText.style.opacity = fadeFn(-amt);
                   if (self.rightText) self.rightText.style.opacity = 0;
-                  score.innerHTML("459");
+                  //score.innerHTML("459");
                 } else {
                   if (self.leftText) self.leftText.style.opacity = 0;
                   if (self.rightText) self.rightText.style.opacity = fadeFn(amt);

@@ -10,15 +10,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/main.html',
       controller: 'MainCtrl'
     })
-    .state('/photos/camera', {
-        url: '/photos/camera',
-        controller: 'CameraCtrl'
-      })
-    .state('/photos/gallery', {
-      url: '/photos/gallery',
-      templateUrl: '/templates/photos/gallery.html',
-      controller: 'GalleryCtrl'
-    });
+    .state('comment', {
+        url: '/comment',
+        templateUrl: 'templates/comment.html',
+        controller: 'CommentCtrl',
+        params: {'imageURI': null}
+      });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main');

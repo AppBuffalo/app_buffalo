@@ -9,6 +9,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         setTimeout(function(){
             document.getElementById("score-1").innerHTML = 56456464;
         }, 1000);
+
     });
 
     $scope.cards = [
@@ -48,7 +49,16 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     };
 
     $scope.takePicture = function(){
-       console.log("take a picture and sell it to his parents")
+        $cordovaCamera.getPicture().then(function(imageURI){
+            console.log(imageURI);
+            $scope.image_url = imageURI;
+            $state.go("comment", {imageURI: imageURI})
+        }, function(err){
+            console.log(err);
+        }, {
+            quality: 75,
+            saveToPhotoAlbum: true
+        })
     };
 
 

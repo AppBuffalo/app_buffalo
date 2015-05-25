@@ -46,13 +46,44 @@ angular.module('buffalo')
         }
 
 
+        function getPhotos(userID, latitude, longitude){
+            var params = { 'user_id' : userID, 'longitude' : longitude, 'latitude' : latitude };
+
+            return RequestBuilder.getRequestPromise({
+
+                method         : 'GET',
+                url            : USER_API_ENDPOINT + '/photos',
+                params         : params
+
+            });
+        }
+
+        function uploadPhoto(userID, latitude, longitude,url){
+
+            return RequestBuilder.getRequestPromise({
+
+                method         : 'POST',
+                url            : USER_API_ENDPOINT + '/photos',
+                data           : {
+                    'user_id'      : userID,
+                    'lat'     : latitude,
+                    'long'    : longitude,
+                    's3_url'       : url
+                }
+
+            });
+        }
+
+
 
 
         return {
             'login'      : login,
             'swipeNope'  : swipeNope,
             'swipeLike'  : swipeLike,
-            'register'   : register
+            'register'   : register,
+            'getPhotos'  : getPhotos,
+            'uploadPhoto': uploadPhoto
         };
 
     });

@@ -13,6 +13,14 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         },
@@ -25,19 +33,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
@@ -69,13 +69,13 @@
                             "count": 1
                         }
                     ],
-                    "AssetsLibrary.framework": [
+                    "ImageIO.framework": [
                         {
-                            "xml": false,
-                            "count": 2
+                            "xml": true,
+                            "count": 1
                         }
                     ],
-                    "MobileCoreServices.framework": [
+                    "CoreLocation.framework": [
                         {
                             "xml": false,
                             "count": 2
@@ -87,16 +87,16 @@
                             "count": 3
                         }
                     ],
-                    "CoreLocation.framework": [
+                    "AssetsLibrary.framework": [
                         {
                             "xml": false,
                             "count": 2
                         }
                     ],
-                    "ImageIO.framework": [
+                    "MobileCoreServices.framework": [
                         {
-                            "xml": true,
-                            "count": 1
+                            "xml": false,
+                            "count": 2
                         }
                     ]
                 }
@@ -115,34 +115,34 @@
     },
     "installed_plugins": {
         "com.ionic.keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
         "com.shazron.cordova.plugin.keychainutil": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
-        },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
         "org.apache.cordova.statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.buffalo220346"
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
         }
     },
     "dependent_plugins": {}

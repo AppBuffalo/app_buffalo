@@ -51,6 +51,10 @@
                         {
                             "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
+                            "count": 1
                         }
                     ],
                     "/widget": [
@@ -90,7 +94,7 @@
                     "AssetsLibrary.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 3
                         }
                     ],
                     "MobileCoreServices.framework": [
@@ -142,6 +146,9 @@
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
         "org.apache.cordova.statusbar": {
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
+        },
+        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         }
     },

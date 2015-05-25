@@ -23,14 +23,20 @@ angular.module('buffalo')
         function getRequestPromise(request){
             var deferred = $q.defer();
 
+
             console.log(JSON.stringify(request, null, 4));
 
             $http(request)
             .success(function(data) {
 
+                   // console.log("SUCCESS !!!!!!!!!!!!!!!!!!!!!!!!!!");
+
                     deferred.resolve(data);
 
                 }).error(function(data, status) {
+
+                    //console.log("FAIL :((((((((((((((((((((((((((((((((((((((((((");
+
 
                     var message = isDefined(data.message) ? data.message : errorMessage.defaultMsg;
 
@@ -48,7 +54,7 @@ angular.module('buffalo')
 
                 // 404 + empty string payload = no connection
                 if(status === 404 && data === ""){
-                    console.log("erreur no connection");
+                    console.log("error no connection");
                 }
 
             });

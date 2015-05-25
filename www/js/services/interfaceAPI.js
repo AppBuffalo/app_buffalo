@@ -7,6 +7,7 @@ angular.module('buffalo')
     //searching for and filtering merchants
     .service('InterfaceAPI', function(RequestBuilder) {
 
+
         var USER_API_ENDPOINT = 'http://92.222.82.233';
 
         function login(UUID, platform){
@@ -17,7 +18,6 @@ angular.module('buffalo')
                 method         : 'GET',
                 url            : USER_API_ENDPOINT + '/users',
                 params         : params
-
             });
         }
 
@@ -41,7 +41,7 @@ angular.module('buffalo')
         function swipeNope(userID, imageID){
             return RequestBuilder.getRequestPromise({
                 method         : 'POST',
-                url            : USER_API_ENDPOINT + '/users/'+userID+'/nope/'+imageID
+                url            : USER_API_ENDPOINT + '/users/'+userID+'/dislike/'+imageID
             });
         }
 
@@ -58,7 +58,7 @@ angular.module('buffalo')
             });
         }
 
-        function uploadPhoto(userID, latitude, longitude,url){
+        function uploadPhoto(userID, latitude, longitude,url,commentaire){
 
             return RequestBuilder.getRequestPromise({
 
@@ -68,7 +68,8 @@ angular.module('buffalo')
                     'user_id'      : userID,
                     'lat'     : latitude,
                     'long'    : longitude,
-                    's3_url'       : url
+                    's3_url'       : url,
+                    'comment' : commentaire
                 }
 
             });

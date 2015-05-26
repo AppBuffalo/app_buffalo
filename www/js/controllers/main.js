@@ -112,10 +112,10 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     function dataSample()
     {
         console.log("dataSample");
-        $scope.cards = [
-            {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-            {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
-        ];
+       // $scope.cards = [
+         //   {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
+           // {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
+       // ];
     }
 
 
@@ -177,8 +177,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
         function error(err) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
-            $scope.refreshPhotos();
-
+            $scope.modalGPS();
         }
 
         navigator.geolocation.getCurrentPosition(success, error, options);
@@ -186,40 +185,33 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     }
 
 
-    $scope.open = function () {
+    $scope.modalGPS = function () {
 
-        var nestedConfirmDialog ='';
-        ngDialog.open({
-            preCloseCallback: function(value) {
-                 nestedConfirmDialog = ngDialog.openConfirm({
-                    template: 'firstDialog',
-                    className: 'ngdialog-theme-default ngdialog-theme-custom'
-                    plain: true
-                });
 
-                // NOTE: return the promise from openConfirm
-                return nestedConfirmDialog;
+        console.log("called");
 
-            }
 
+        ngDialog.openConfirm({
+            template: 'gpsDialog',
+            className: 'ngdialog-theme-default ngdialog-theme-custom'
+        })
+        .then(function () {
+                geoLoc();
+        }, function () {
+                geoLoc();
         });
 
-        console.log('PROMISE=    '+nestedConfirmDialog);
-        console.log('PROMISE=    '+JSON.stringify(nestedConfirmDialog, null, 4));
 
 
 
 
 
-
-        var dialog =  ngDialog.openConfirm({
-
-        });
-
-        dialog.closePromise.then(function (data) {
-            console.log(data.value + ' has been dismissed.');
-        });
     };
+
+
+
+
+
 
 
 });

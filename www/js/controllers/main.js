@@ -1,14 +1,20 @@
-controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice,
-                                            $http, $state, $window, $cordovaCamera, InterfaceAPI, ngDialog){
+controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice, $http, $state, $window, $cordovaCamera, InterfaceAPI, ngDialog, $ionicSideMenuDelegate){
 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
         //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
         login();
         geoLoc();
-
         });
 
+    $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+        InterfaceAPI.login($cordovaDevice.getUUID().toString(),$cordovaDevice.getPlatform().toString())
+            .then(function(data){
+                $scope.user_score = data['score'];
+                $scope.user_photos_size = data['photo_size'];
+            })
+    };
 
 
     $scope.cardDestroyed = function(index) {
@@ -25,7 +31,6 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
             .then( function() {
              //   console.log(' THEN NOPE');
         });
-
     };
 
     $scope.cardSwipedRight = function(index,card_id) {
@@ -33,17 +38,12 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         $scope.cards.splice(index, 1);
        // console.log("SWIPE RIGHT NEGRO");
 
-
         //InterfaceAPI.swipeLike(3,card_id)
         InterfaceAPI.swipeLike($scope.user_id,card_id)
             .then( function() {
-
              //   console.log('THEN LIKE');
 
-
             });
-
-
     };
 
     $scope.redirectToGallery = function(){
@@ -54,7 +54,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         $cordovaCamera.getPicture().then(function(imageURI){
             console.log(imageURI);
             $scope.image_url = imageURI;
-            $state.go("comment", {imageURI: imageURI})
+            $state.go("comment", {imageURI: imageURI, user_id: $scope.user_id, latitude: $scope.lat, longitude: $scope.long})
         }, function(err){
             console.log(err);
         }, {
@@ -100,12 +100,6 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
                     console.log("datanull");
                     dataSample();
                 }
-
-
-
-
-
-
             });
     };
 
@@ -158,7 +152,6 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     }
 
     function geoLoc(){
-
 
 
         var options = {

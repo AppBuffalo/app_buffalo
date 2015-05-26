@@ -14,8 +14,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
         url: '/comment',
         templateUrl: 'templates/comment.html',
         controller: 'CommentCtrl',
-        params: {'imageURI': null}
-      });
+        params: {'imageURI': null, 'user_id': null,  'latitude': null, 'longitude': null}
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main');

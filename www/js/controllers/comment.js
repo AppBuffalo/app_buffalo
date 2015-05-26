@@ -1,8 +1,11 @@
 controllers.controller('CommentCtrl', function($scope, $stateParams, $ionicPlatform, $state,
-                                               $ionicViewSwitcher, $cordovaFile, $cordovaFileTransfer){
+                                               $ionicViewSwitcher, $cordovaFile, $cordovaFileTransfer, InterfaceAPI){
 
     $ionicPlatform.ready(function() {
         $scope.image_uri = $stateParams.imageURI;
+        $scope.lat = $stateParams.latitude;
+        $scope.long = $stateParams.longitude;
+        $scope.user_id = $stateParams.user_id;
         document.getElementById("form-comment").focus();
     });
 
@@ -21,7 +24,6 @@ controllers.controller('CommentCtrl', function($scope, $stateParams, $ionicPlatf
     };
 
     $scope.envoyerPhoto = function(){
-        console.log("Envois Photo");
 
         var uploadOptions = {
             params : { 'upload_preset': "hfrgicap"}
@@ -29,17 +31,22 @@ controllers.controller('CommentCtrl', function($scope, $stateParams, $ionicPlatf
 
         $cordovaFileTransfer
             .upload("https://api.cloudinary.com/v1_1/dbqbmbcvg/image/upload", $scope.image_uri, uploadOptions)
-            .then(function(result) {
-                console.log("OK");
-                var comment = document.getElementById('form-comment').value;
-                var response = JSON.parse(result["response"]);
-                $scope.cloud_result = response["secure_url"];
+                .then(function(result) {
+                    var comment = document.getElementById('form-comment').value;
+                    var response = JSON.parse(result["response"]);
+                    var url = response["secure_url"];
 
-                $scope.go("main")
-            }, function(err) {
-                console.log(err);
-            });
+                    InterfaceAPI.uploadPhoto($scope.user_id, $scope.lat, $scope.long, url, comment)
+                        .then(function(data){
+                            console.log("photo envoyée");
+                        }, function(data){
+                            console.log("erreur envois photo api");
+                    });
+                    $scope.go("main")
 
+                }, function(err) {
+                    console.log(err);
+                });
     };
 });
 

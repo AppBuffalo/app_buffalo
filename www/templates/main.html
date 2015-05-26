@@ -1,17 +1,29 @@
 <ion-content scroll="false" drag-content="false">
-    <i class="icon ion-ios-camera-outline main-camera" on-tap="takePicture()"></i>
-    <i class="icon ion-navicon main-settings"></i>
-    <td-cards>
-        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed('$index')"  on-swipe-left="cardSwipedLeft($index,card.id)" on-swipe-right="cardSwipedRight($index,card.id)">
-            <div class="no-text">NOPE</div>
-            <img ng-src="{{ card.url }}">
-            <div class="comment">
-                <p align="center">{{ card.comment }}</p>
-            </div>
-            <div class="score">
-                <p align="center" id="score-{{ card.id }}" class="odometer">{{ card.score }}</p>
-            </div>
-            <div class="yes-text">LIKE</div>
-        </td-card>
-    </td-cards>
+    <ion-side-menus>
+        <ion-side-menu-content>
+            <i class="icon ion-ios-camera-outline main-camera" on-tap="takePicture()"></i>
+            <button class="button icon button-clear ion-navicon main-settings" ng-click="toggleLeft()"></button>
+            <td-cards>
+                <td-card ng-repeat="card in cards" on-destroy="cardDestroyed('$index')"  on-swipe-left="cardSwipedLeft($index,card.id)" on-swipe-right="cardSwipedRight($index,card.id)">
+                    <div class="no-text">NOPE</div>
+                    <img ng-src="{{ card.url }}">
+                    <div class="comment">
+                        <p align="center">{{ card.comment }}</p>
+                    </div>
+                    <div class="score">
+                        <p align="center" id="score-{{ card.id }}" class="odometer">{{ card.score }}</p>
+                    </div>
+                    <div class="yes-text">LIKE</div>
+                </td-card>
+            </td-cards>
+        </ion-side-menu-content>
+        <ion-side-menu side="left">
+            <ion-list>
+                <ion-item>Score utilisateur : {{ user_score }}</ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-item>Nombre de photos envoyées : {{ user_photos_size }}</ion-item>
+            </ion-list>
+        </ion-side-menu>
+    </ion-side-menus>
 </ion-content>

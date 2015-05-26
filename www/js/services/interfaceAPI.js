@@ -75,9 +75,6 @@ angular.module('buffalo')
             });
         }
 
-
-
-
         return {
             'login'      : login,
             'swipeNope'  : swipeNope,

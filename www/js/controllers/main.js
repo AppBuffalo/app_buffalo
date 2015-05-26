@@ -1,5 +1,5 @@
 controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice,
-                                            $http, $state, $window, $cordovaCamera, InterfaceAPI){
+                                            $http, $state, $window, $cordovaCamera, InterfaceAPI, $ionicSideMenuDelegate){
 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
@@ -8,6 +8,14 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         geoLoc();
         });
 
+    $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+        InterfaceAPI.login($cordovaDevice.getUUID().toString(),$cordovaDevice.getPlatform().toString())
+            .then(function(data){
+                $scope.user_score = data['score'];
+                $scope.user_photos_size = data['photo_size'];
+            })
+    };
 
 
     $scope.cardDestroyed = function(index) {

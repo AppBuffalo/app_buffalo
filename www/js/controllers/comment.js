@@ -31,6 +31,11 @@ controllers.controller('CommentCtrl', function($scope, $stateParams, $ionicPlatf
             .upload("https://api.cloudinary.com/v1_1/dbqbmbcvg/image/upload", $scope.image_uri, uploadOptions)
             .then(function(result) {
                 console.log("OK");
+                var comment = document.getElementById('form-comment').value;
+                var response = JSON.parse(result["response"]);
+                $scope.cloud_result = response["secure_url"];
+
+                $scope.go("main")
             }, function(err) {
                 console.log(err);
             });

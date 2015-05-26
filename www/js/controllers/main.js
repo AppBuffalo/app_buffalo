@@ -1,5 +1,5 @@
 controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice,
-                                            $http, $state, $window, $cordovaCamera, InterfaceAPI){
+                                            $http, $state, $window, $cordovaCamera, InterfaceAPI, ngDialog){
 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
@@ -184,6 +184,42 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         navigator.geolocation.getCurrentPosition(success, error, options);
 
     }
+
+
+    $scope.open = function () {
+
+        var nestedConfirmDialog ='';
+        ngDialog.open({
+            preCloseCallback: function(value) {
+                 nestedConfirmDialog = ngDialog.openConfirm({
+                    template: 'firstDialog',
+                    className: 'ngdialog-theme-default ngdialog-theme-custom'
+                    plain: true
+                });
+
+                // NOTE: return the promise from openConfirm
+                return nestedConfirmDialog;
+
+            }
+
+        });
+
+        console.log('PROMISE=    '+nestedConfirmDialog);
+        console.log('PROMISE=    '+JSON.stringify(nestedConfirmDialog, null, 4));
+
+
+
+
+
+
+        var dialog =  ngDialog.openConfirm({
+
+        });
+
+        dialog.closePromise.then(function (data) {
+            console.log(data.value + ' has been dismissed.');
+        });
+    };
 
 
 });

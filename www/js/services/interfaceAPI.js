@@ -4,7 +4,6 @@
 'use strict';
 
 angular.module('buffalo')
-    //searching for and filtering merchants
     .service('InterfaceAPI', function(RequestBuilder) {
 
 

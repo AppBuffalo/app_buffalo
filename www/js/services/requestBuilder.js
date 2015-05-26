@@ -29,7 +29,6 @@ angular.module('buffalo')
             $http(request)
             .success(function(data) {
 
-                   // console.log("SUCCESS !!!!!!!!!!!!!!!!!!!!!!!!!!");
 
                     deferred.resolve(data);
 
@@ -56,7 +55,6 @@ angular.module('buffalo')
                 if(status === 404 && data === ""){
                     console.log("error no connection");
                 }
-
             });
 
             return deferred.promise;

@@ -1,0 +1,29 @@
+{
+	"node": true,
+	"browser": true,
+	"esnext": true,
+	"bitwise": true,
+	"curly": true,
+	"eqeqeq": true,
+	"immed": true,
+	"latedef": true,
+	"newcap": true,
+	"noarg": true,
+	//"quotmark": "single",
+	"regexp": true,
+	"undef": true,
+	//"unused": true,
+	"strict": true,
+	//"trailing": true,
+	"smarttabs": true,
+	"globals": {
+		"dcomConfig": false,
+		"angular": false,
+		"jQuery": false,
+		"dataLayer": false,
+		"qbaka": false,
+		"trackJs": false
+	},
+	"-W099": true, //Mixed spaces and tabs
+	"-W015": true //Expected indentation didn't match
+}

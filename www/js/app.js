@@ -33,14 +33,14 @@ angular.module('buffalo', ['ionic', 'ngCordova','ngDialog' , 'ionic.contrib.ui.t
 
     })
 
-    .run(function($ionicPlatform,$cordovaStatusbar,$window) {
+    .run(function($ionicPlatform,$window) {
         $ionicPlatform.ready(function() {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if ($window.cordova && $window.cordova.plugins && $window.cordova.plugins.Keyboard) {
                 $window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
-            $cordovaStatusbar.hide();
+            StatusBar.hide();
         });
     });
 

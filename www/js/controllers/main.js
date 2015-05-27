@@ -1,5 +1,6 @@
 'use strict';
 
+
 angular.module('buffalo')
 
     .controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice, $http, $state, $window, $cordovaCamera, InterfaceAPI, ngDialog, $ionicSideMenuDelegate){
@@ -27,13 +28,12 @@ angular.module('buffalo')
             $scope.cards.splice(index, 1);
 
             //InterfaceAPI.swipeNope(7,card_id)
-            InterfaceAPI.swipeNope($scope.user_id,card_id)
-                .then( function() {
-                    if($scope.cards.length<=2)
-                    {
+            InterfaceAPI.swipeNope($scope.user_id, card_id)
+                .then(function () {
+                    if ($scope.cards.length <= 2) {
                         $scope.refreshPhotos();
                     }
-            });
+                });
         };
 
         $scope.cardSwipedRight = function(index,card_id) {
@@ -196,4 +196,28 @@ angular.module('buffalo')
 
         };
 
-    });
+    $scope.buttonTakePhotoPressed = function(){
+        document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432759126-buttoncamerapressed.png";
+    };
+
+    $scope.buttonTakePhotoReleased = function(){
+        document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432747209-takephoto.png";
+    };
+
+    $scope.buttonNopePressed = function(){
+        document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432759798-nopebuttonpressed.png";
+    };
+
+    $scope.buttonNopeReleased = function(){
+        document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png";
+    };
+
+    $scope.buttonLikePressed = function(){
+        document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432760261-buttonlikepressed.png";
+    };
+
+    $scope.buttonLikeReleased = function(){
+        document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432748455-likebutton.png";
+    };
+
+});

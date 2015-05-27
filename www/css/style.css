@@ -1,3 +1,7 @@
+/***
+    Common
+***/
+
 body{
     background-color: black;
 }
@@ -9,6 +13,16 @@ body{
 .margin-top-17{
     margin-top: 17%;
 }
+
+.full-screen-image{
+    height:100%;
+    width: 100%;
+    background: url('http://image.noelshack.com/fichiers/2015/22/1432762078-19690-1625087147705253-2566051714562027561-n.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+
 
 /***
     Cartes Tinder Like
@@ -134,4 +148,82 @@ td-card .comment p{
     background-color: #303348;
     color: white;
     font-weight: 600;
+}
+
+/***
+    Main
+***/
+
+.main-btn_menu{
+    position: absolute;
+    z-index: 10;
+
+    height: 30px;
+    width: 30px;
+
+    top: 3%;
+    left: 2.5%;
+}
+
+.main-black_overlay{
+    position: absolute;
+    height: 12%;
+    width: 100%;
+    bottom: 0;
+    z-index: 10;
+}
+
+.main-btn_takePhoto{
+    position: absolute;
+    height: 10%;
+    bottom: 1.1%;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    z-index: 20;
+}
+
+.main-btn_nope{
+    position: absolute;
+    bottom: 3%;
+    height: 5%;
+    left: 21%;
+    z-index: 20;
+}
+
+.main-btn_like{
+    position: absolute;
+    bottom: 3%;
+    height: 5%;
+    right: 21%;
+    z-index: 20;
+}
+
+/***
+    Comment
+***/
+
+.comment-btn_close{
+    position: absolute;
+
+    z-index: 10;
+
+    height: 30px;
+    width: 30px;
+
+    top: 3%;
+    left: 2.5%;
+}
+
+.comment-btn_send{
+    position: absolute;
+
+    z-index: 10;
+
+    height: 30px;
+    width: 30px;
+
+    top: 3%;
+    right: 2.5%;
 }

@@ -10,7 +10,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/main.html',
       controller: 'MainCtrl'
     })
-    .state('comment', {
+      .state('comment', {
         url: '/comment',
         templateUrl: 'templates/comment.html',
         controller: 'CommentCtrl',

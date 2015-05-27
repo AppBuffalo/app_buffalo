@@ -5,7 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('buffalo', ['ionic', 'ngCordova', 'ionic.contrib.ui.tinderCards', 'buffalo.controllers']);
+var app = angular.module('buffalo', ['ionic', 'ngCordova','ngDialog' , 'ionic.contrib.ui.tinderCards', 'buffalo.controllers','ui.bootstrap']);
+
+
+
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

@@ -33,6 +33,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
                         },
@@ -50,10 +54,6 @@
                         },
                         {
                             "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
                             "count": 1
                         }
                     ],
@@ -136,6 +136,9 @@
         "cordova-plugin-file": {
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "fr.geselle.buffaloapp"
+        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
@@ -146,9 +149,6 @@
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
         "org.apache.cordova.statusbar": {
-            "PACKAGE_NAME": "fr.geselle.buffaloapp"
-        },
-        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         }
     },

@@ -5,6 +5,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
         login();
         geoLoc();
+        $scope.cards=[];
         });
 
     $scope.toggleLeft = function() {
@@ -16,32 +17,32 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
             })
     };
 
-
-    $scope.cardDestroyed = function(index) {
-        $scope.cards.splice(index, 1);
-    };
-
     $scope.cardSwipedLeft = function(index,card_id) {
+
+
         $scope.cards.splice(index, 1);
 
-        //console.log("SWIPE LEFT NEGRO");
-
-        //InterfaceAPI.swipeNope(3,card_id)
+        //InterfaceAPI.swipeNope(7,card_id)
         InterfaceAPI.swipeNope($scope.user_id,card_id)
             .then( function() {
-             //   console.log(' THEN NOPE');
+                if($scope.cards.length<=2)
+                {
+                    $scope.refreshPhotos();
+                }
         });
     };
 
     $scope.cardSwipedRight = function(index,card_id) {
 
         $scope.cards.splice(index, 1);
-       // console.log("SWIPE RIGHT NEGRO");
 
-        //InterfaceAPI.swipeLike(3,card_id)
+        //InterfaceAPI.swipeLike(7,card_id)
         InterfaceAPI.swipeLike($scope.user_id,card_id)
             .then( function() {
-             //   console.log('THEN LIKE');
+                if($scope.cards.length<=2)
+                {
+                    $scope.refreshPhotos();
+                }
 
             });
     };
@@ -63,55 +64,51 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
         })
     };
 
-
     $scope.refreshPhotos = function(){
 
-
-        if ($scope.lat==undefined)
+        if ($scope.lat==undefined || $scope.long==undefined)
         {
-            dataSample();
+            geoLoc();
         }
-        //InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
-        InterfaceAPI.getPhotos( 6,$scope.lat, $scope.long) // test avec un user ID en dur
-            .then( function(data) {
+        else {
+            InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
+            //InterfaceAPI.getPhotos(7, $scope.lat, $scope.long) // test avec un user ID en dur
+                .then(function (data) {
 
 //                console.log("GETPHOTOS :   " + JSON.stringify(data, null, 4));
 
-                if (data.length>0) {
-                    $scope.cards = [];
-                    var newCard = {id: '', url: '', comment: '', score: 0};
-                    angular.forEach(data, function (card) {
+                    if (data.length > 0) {
+                        $scope.cards = [];
+                        var newCard = {id: '', url: '', comment: '', score: 0};
+                        angular.forEach(data, function (card) {
 
-                        if(card.comment==null)
-                        {
-                            card.comment='';
-                        }
+                            if (card.comment == null) {
+                                card.comment = '';
+                            }
 
-                        newcard = {id: card.id.toString(), url: card.s3_url.toString(), comment: card.comment.toString(), score :card.score};
-                      //  console.log("NEWCARD :   " + JSON.stringify(newcard, null, 4));
-                        $scope.cards.push(newcard);
+                            newcard = {
+                                id: card.id.toString(),
+                                url: card.s3_url.toString(),
+                                comment: card.comment.toString(),
+                                score: card.score
+                            };
+                            //console.log("NEWCARD :   " + JSON.stringify(newcard, null, 4));
+                            $scope.cards.push(newcard);
 
-                    });
-                    //console.log("SCOPE.CARDS :   " + JSON.stringify($scope.cards, null, 4));
+                        });
+                        //console.log("SCOPE.CARDS :   " + JSON.stringify($scope.cards, null, 4));
+                        $scope.cards = $scope.cards.sort(function (a, b) {
+                            return b.id - a.id
+                        });
+                        //console.log("SCOPE.CARDS :   " + JSON.stringify($scope.cards, null, 4));
 
-                }
-                else
-                {
-                    console.log("datanull");
-                    dataSample();
-                }
-            });
+                    }
+                    else {
+
+                    }
+                });
+        }
     };
-
-    function dataSample()
-    {
-        console.log("dataSample");
-       // $scope.cards = [
-         //   {id: 1, url: "http://www.hapshack.com/images/DibjY.jpg", comment: "Sarek Zamel", score: 125},
-           // {id: 2, url: "http://www.hapshack.com/images/k5yns.jpg", comment: "Dédicace à tous les arabes", score: 69}
-       // ];
-    }
-
 
     $scope.uploadPhotos = function(){
         InterfaceAPI.uploadPhoto($scope.user_id,$scope.lat, $scope.long,'http://i.imgur.com/mheXQuK.jpg?1','')
@@ -177,7 +174,6 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
     }
 
-
     $scope.modalGPS = function () {
 
 
@@ -194,17 +190,6 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
                 geoLoc();
         });
 
-
-
-
-
-
     };
-
-
-
-
-
-
 
 });

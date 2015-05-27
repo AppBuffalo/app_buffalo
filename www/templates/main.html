@@ -16,6 +16,8 @@
                     <div class="yes-text">LIKE</div>
                 </td-card>
             </td-cards>
+
+            <br/>><br/>><br/>><br/>><br/><strong  ng-if="cards.length===0" ng-click="refreshPhotos()"><center><h1 style="font-size:28px;">NO CARDS PLZ UPDATE</h1></center></strong>
         </ion-side-menu-content>
         <ion-side-menu side="left">
             <ion-list>
@@ -31,7 +33,7 @@
 <script type="text/ng-template" id="gpsDialog">
     <div class="ngdialog-message">
         <h2>Veuillez activer votre GPS</h2>
-        <div>L'application néscéssite l'accès au GPS pour récupérer les photos des autres utilisateurs près de vous. Veuillez activer le GPS dans les paramètres de votre téléphone</div>
+        <div>L'application néscéssite l'accèsù au GPS pour récupérer les photos des autres utilisateurs près de vous. Veuillez activer le GPS dans les paramètres de votre téléphone</div>
     </div>
     <div class="ngdialog-buttons mt">
         <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm()">OK</button>

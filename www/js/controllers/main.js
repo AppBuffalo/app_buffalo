@@ -3,8 +3,8 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
         //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
-        //login();
-        //geoLoc();
+        login();
+        geoLoc();
         $scope.cards=[];
         });
 
@@ -68,7 +68,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
         if ($scope.lat==undefined || $scope.long==undefined)
         {
-            //geoLoc();
+            geoLoc();
         }
         else {
             InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
@@ -190,6 +190,30 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
                 geoLoc();
         });
 
+    };
+
+    $scope.buttonTakePhotoPressed = function(){
+        document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432759126-buttoncamerapressed.png";
+    };
+
+    $scope.buttonTakePhotoReleased = function(){
+        document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432747209-takephoto.png";
+    };
+
+    $scope.buttonNopePressed = function(){
+        document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432759798-nopebuttonpressed.png";
+    };
+
+    $scope.buttonNopeReleased = function(){
+        document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png";
+    };
+
+    $scope.buttonLikePressed = function(){
+        document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432760261-buttonlikepressed.png";
+    };
+
+    $scope.buttonLikeReleased = function(){
+        document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432748455-likebutton.png";
     };
 
 });

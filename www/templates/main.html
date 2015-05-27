@@ -1,15 +1,13 @@
 <ion-content scroll="false" drag-content="false">
     <ion-side-menus>
         <ion-side-menu-content>
-            <i class="icon ion-ios-camera-outline main-camera" on-tap="takePicture()"></i>
-            <button class="button icon button-clear ion-navicon main-settings" ng-click="toggleLeft()"></button>
+            <!-- Main View -->
+            <img class="main-btn_menu" src="http://image.noelshack.com/fichiers/2015/22/1432746135-menu.png" ng-click="toggleLeft()"/>
+
             <td-cards>
                 <td-card ng-repeat="card in cards" on-destroy="cardDestroyed('$index')"  on-swipe-left="cardSwipedLeft($index,card.id)" on-swipe-right="cardSwipedRight($index,card.id)">
                     <div class="no-text">NOPE</div>
                     <img ng-src="{{ card.url }}">
-                    <div class="comment">
-                        <p align="center">{{ card.comment }}</p>
-                    </div>
                     <div class="score">
                         <p align="center" id="score-{{ card.id }}" class="odometer">{{ card.score }}</p>
                     </div>
@@ -17,13 +15,25 @@
                 </td-card>
             </td-cards>
 
+            <div>
+                <img class="main-black_overlay" src="http://image.noelshack.com/fichiers/2015/22/1432746744-blackoverlay.png" />
+
+                <img id="iconNope" class="main-btn_nope" on-touch="buttonNopePressed()" on-release="buttonNopeReleased()" src="http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png" />
+                <img id="iconTakePhoto" class="main-btn_takePhoto" on-touch="buttonTakePhotoPressed()"
+                     on-release="buttonTakePhotoReleased()" on-tap="takePicture()"
+                     src="http://image.noelshack.com/fichiers/2015/22/1432747209-takephoto.png" />
+                <img id="iconLike" on-touch="buttonLikePressed()" on-release="buttonLikeReleased()" class="main-btn_like" src="http://image.noelshack.com/fichiers/2015/22/1432748455-likebutton.png" />
+            </div>
+
             <br/><br/><br/><br/><br/><strong  ng-if="cards.length===0" ng-click="refreshPhotos()"><center><h1 style="font-size:28px;">NO CARDS PLZ UPDATE</h1></center></strong>
         </ion-side-menu-content>
+
+        <!-- Menu -->
         <ion-side-menu side="left" class="main-side_menu">
             <div class="width-100" align="center">
                 <img class="main-side_menu-image" src="http://image.noelshack.com/fichiers/2015/22/1432734784-avatar.png" />
                 <p id="score-title">Score</p>
-                <p id="score-number">34 456</p>
+                <p id="score-number">{{ user_score }}</p>
             </div>
             <div class="margin-top-17">
                 <ion-list>
@@ -33,6 +43,7 @@
                 </ion-list>
             </div>
         </ion-side-menu>
+
     </ion-side-menus>
 </ion-content>
 

@@ -20,11 +20,8 @@ angular.module('buffalo')
 
 
 
-                deferred.reject(message);
+                deferred.reject();
 
-                if (status in httpErrorMessages) {
-                    console.log("error");
-                }
 
                 // 404 + empty string payload = no connection
                 if(status === 404 && data === ""){

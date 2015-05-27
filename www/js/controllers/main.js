@@ -3,8 +3,8 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
     $ionicPlatform.ready(function() {
         //Vérification si l'utilisateur a déjà utilisé l'app
         //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
-        login();
-        geoLoc();
+        //login();
+        //geoLoc();
         $scope.cards=[];
         });
 
@@ -68,7 +68,7 @@ controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, 
 
         if ($scope.lat==undefined || $scope.long==undefined)
         {
-            geoLoc();
+            //geoLoc();
         }
         else {
             InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID

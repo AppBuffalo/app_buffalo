@@ -2,6 +2,18 @@ body{
     background-color: black;
 }
 
+.width-100{
+    width: 100%;
+}
+
+.margin-top-17{
+    margin-top: 17%;
+}
+
+/***
+    Cartes Tinder Like
+***/
+
 td-cards {
     display: block;
     z-index: 0;
@@ -79,69 +91,47 @@ td-card .comment p{
     opacity: 0;
 }
 
-.main-camera{
-    position: absolute;
-    top: 92%;
-    left: 5%;
-    z-index: 99;
-    font-size: 40px;
-    color: white;
-}
+/***
+    Side Menu
+***/
 
-.main-settings{
-    position: absolute;
-    top: 2.5%;
-    left: 5%;
-    font-size: 40px;
-    z-index: 99;
-    color: white;
-}
-
-.image-fullscreen{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-
-    z-index: 0;
-}
-
-.form-comment{
-    z-index: 10;
-    position: absolute;
-
-    top: 35%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white !important;
-    border-radius: 0;
-
-    visibility: hidden;
-}
-
-.bouton-envoyer{
-    position: absolute;
-    color: white !important;
-    z-index: 10;
-
-    top: 2.5%;
-    right: 5%;
-    font-size: 40px;
-    border-color: black;
-}
-
-.bouton-fermer{
-    position: absolute;
-    color: white !important;
-    z-index: 10;
-
-    top: 2.5%;
-    left: 5%;
-
-    font-size: 40px;
-    border-color: black;
+.ion-item-custom{
+    border-color: #454A66;
 }
 
 .main-side_menu{
-    background-color: #4A4F70;
+    background-color: #363951;
+}
+
+.main-side_menu p{
+    color: white;
+    font-weight: 600;
+}
+
+.main-side_menu #score-title{
+    font-size: 34px;
+    margin-top: 4%;
+}
+
+.main-side_menu #score-number{
+    font-size: 23px;
+    margin-top: 5%;
+}
+
+.main-side_menu-image{
+    height: 128px;
+    width: 128px;
+    margin-top: 8%;
+}
+
+.main-side_menu #menu-inviterAmis a{
+    background-color: #303348;
+    color: white;
+    font-weight: 600;
+}
+
+.main-side_menu #menu-inviterAmis{
+    background-color: #303348;
+    color: white;
+    font-weight: 600;
 }

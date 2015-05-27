@@ -17,15 +17,21 @@
                 </td-card>
             </td-cards>
 
-            <br/>><br/>><br/>><br/>><br/><strong  ng-if="cards.length===0" ng-click="refreshPhotos()"><center><h1 style="font-size:28px;">NO CARDS PLZ UPDATE</h1></center></strong>
+            <br/><br/><br/><br/><br/><strong  ng-if="cards.length===0" ng-click="refreshPhotos()"><center><h1 style="font-size:28px;">NO CARDS PLZ UPDATE</h1></center></strong>
         </ion-side-menu-content>
         <ion-side-menu side="left" class="main-side_menu">
-            <ion-list style="background-color: #4A4F70">
-                <ion-item style="background-color: #4A4F70">Score utilisateur : {{ user_score }}</ion-item>
-            </ion-list>
-            <ion-list>
-                <ion-item>Nombre de photos envoyées : {{ user_photos_size }}</ion-item>
-            </ion-list>
+            <div class="width-100" align="center">
+                <img class="main-side_menu-image" src="http://image.noelshack.com/fichiers/2015/22/1432734784-avatar.png" />
+                <p id="score-title">Score</p>
+                <p id="score-number">34 456</p>
+            </div>
+            <div class="margin-top-17">
+                <ion-list>
+                    <ion-item id="menu-inviterAmis" menu-close href="#/comment" class="ion-item-custom" align="center">
+                        Inviter mes Amis
+                    </ion-item>
+                </ion-list>
+            </div>
         </ion-side-menu>
     </ion-side-menus>
 </ion-content>

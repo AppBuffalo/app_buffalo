@@ -143,6 +143,17 @@ body{
     z-index: 20;
 }
 
+.main-score-container{
+    position: absolute;
+    bottom: 93%;
+}
+
+.main-score{
+    font-size: 34px;
+    font-weight: 600;
+    color: white
+}
+
 /***
     Comment
 ***/

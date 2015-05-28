@@ -10,10 +10,8 @@ angular.module('buffalo')
             //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
             login();
             geoLoc();
-
-            $scope.image_uri = "http://res.cloudinary.com/dbqbmbcvg/image/upload/v1432775371/tpvclnv0auyqktfc2cww.jpg";
-
             $scope.cards=[];
+            $scope.refresh_image='http://i.imgur.com/oRZHwk4.png';
             });
 
         $scope.toggleLeft = function() {
@@ -22,35 +20,6 @@ angular.module('buffalo')
                 .then(function(data){
                     $scope.user_score = data.score;
                     $scope.user_photos_size = data.photo_size;
-                });
-        };
-
-        $scope.cardSwipedLeft = function(index,card_id) {
-
-
-            $scope.cards.splice(index, 1);
-
-            //InterfaceAPI.swipeNope(7,card_id)
-            InterfaceAPI.swipeNope($scope.user_id, card_id)
-                .then(function () {
-                    if ($scope.cards.length <= 2) {
-                        $scope.refreshPhotos();
-                    }
-                });
-        };
-
-        $scope.cardSwipedRight = function(index,card_id) {
-
-            $scope.cards.splice(index, 1);
-
-            //InterfaceAPI.swipeLike(7,card_id)
-            InterfaceAPI.swipeLike($scope.user_id,card_id)
-                .then( function() {
-                    if($scope.cards.length<=2)
-                    {
-                        $scope.refreshPhotos();
-                    }
-
                 });
         };
 
@@ -75,14 +44,14 @@ angular.module('buffalo')
 
             if ($scope.lat===undefined || $scope.long===undefined)
             {
-                //geoLoc();
+                geoLoc();
             }
             else {
                 InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
-                //InterfaceAPI.getPhotos(7, $scope.lat, $scope.long) // test avec un user ID en dur
+                //InterfaceAPI.getPhotos(16, $scope.lat, $scope.long) // test avec un user ID en dur
                     .then(function (data) {
 
-    //                console.log("GETPHOTOS :   " + JSON.stringify(data, null, 4));
+                        //console.log("GETPHOTOS :   " + JSON.stringify(data, null, 4));
 
                         if (data.length > 0) {
                             $scope.cards = [];
@@ -107,7 +76,7 @@ angular.module('buffalo')
                             $scope.cards = $scope.cards.sort(function (a, b) {
                                 return b.id - a.id;
                             });
-                            //console.log("SCOPE.CARDS :   " + JSON.stringify($scope.cards, null, 4));
+                            console.log("SCOPE.CARDS :   " + JSON.stringify($scope.cards, null, 4));
 
                         }
                         else {
@@ -117,14 +86,47 @@ angular.module('buffalo')
             }
         };
 
-        
-        $scope.uploadPhotos = function(){
-            InterfaceAPI.uploadPhoto($scope.user_id,$scope.lat, $scope.long,'http://i.imgur.com/mheXQuK.jpg?1','')
-                .then( function(data) {
-                    console.log("uploadPHOTOS :   "+JSON.stringify(data, null, 4));
+        $scope.buttonTakePhotoPressed = function(){
+            document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432759126-buttoncamerapressed.png";
+        };
 
+        $scope.buttonTakePhotoReleased = function(){
+            document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432747209-takephoto.png";
+        };
+
+        $scope.buttonNopePressed = function(index,card_id){
+            document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432759798-nopebuttonpressed.png";
+            $scope.cards.splice(index, 1);
+            //InterfaceAPI.swipeNope(16,card_id)
+            InterfaceAPI.swipeNope($scope.user_id, card_id)
+                .then(function () {
+                    if ($scope.cards.length <= 2) {
+                        $scope.refreshPhotos();
+                    }
                 });
         };
+
+        $scope.buttonNopeReleased = function(){
+            document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png";
+        };
+
+        $scope.buttonLikePressed = function(index,card_id){
+            document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432760261-buttonlikepressed.png";
+            $scope.cards.splice(index, 1);
+
+            //InterfaceAPI.swipeLike(16,card_id)
+            InterfaceAPI.swipeNope($scope.user_id, card_id)
+                .then(function () {
+                    if ($scope.cards.length <= 2) {
+                        $scope.refreshPhotos();
+                    }
+                });
+        };
+
+        $scope.buttonLikeReleased = function(){
+            document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432748455-likebutton.png";
+        };
+
 
 
         function login(){
@@ -169,7 +171,6 @@ angular.module('buffalo')
                 var crd = pos.coords;
                 $scope.lat = crd.latitude;
                 $scope.long = crd.longitude;
-                //$scope.uploadPhotos();
                 $scope.refreshPhotos();
             }
 
@@ -200,28 +201,6 @@ angular.module('buffalo')
 
         };
 
-    $scope.buttonTakePhotoPressed = function(){
-        document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432759126-buttoncamerapressed.png";
-    };
 
-    $scope.buttonTakePhotoReleased = function(){
-        document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432747209-takephoto.png";
-    };
-
-    $scope.buttonNopePressed = function(){
-        document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432759798-nopebuttonpressed.png";
-    };
-
-    $scope.buttonNopeReleased = function(){
-        document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png";
-    };
-
-    $scope.buttonLikePressed = function(){
-        document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432760261-buttonlikepressed.png";
-    };
-
-    $scope.buttonLikeReleased = function(){
-        document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432748455-likebutton.png";
-    };
 
 });

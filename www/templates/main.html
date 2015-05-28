@@ -4,19 +4,19 @@
             <!-- Main View -->
             <img class="main-btn_menu" src="http://image.noelshack.com/fichiers/2015/22/1432746135-menu.png" ng-click="toggleLeft()"/>
 
-            <div class="full-screen-image" style="background: url('{{ image_uri }}') no-repeat center center fixed; background-size: cover;"></div>
+            <div class="full-screen-image" ng-if="cards.length>=1" style="background: url('{{ cards[0].url }}') no-repeat center center fixed; background-size: cover;"></div>
+            <div class="full-screen-image" ng-if="cards.length>=1" style="background: url('{{ refresh_image }}') no-repeat center center fixed; background-size: cover;"></div>
 
             <div>
                 <img class="main-black_overlay" src="http://image.noelshack.com/fichiers/2015/22/1432746744-blackoverlay.png" />
 
-                <img id="iconNope" class="main-btn_nope" on-touch="buttonNopePressed()" on-release="buttonNopeReleased()" src="http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png" />
+                <img ng-if="cards.length>=1" id="iconNope" class="main-btn_nope" on-touch="buttonNopePressed($index,cards[0].id)" on-release="buttonNopeReleased()" src="http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png" />
                 <img id="iconTakePhoto" class="main-btn_takePhoto" on-touch="buttonTakePhotoPressed()"
                      on-release="buttonTakePhotoReleased()" on-tap="takePicture()"
                      src="http://image.noelshack.com/fichiers/2015/22/1432747209-takephoto.png" />
-                <img id="iconLike" on-touch="buttonLikePressed()" on-release="buttonLikeReleased()" class="main-btn_like" src="http://image.noelshack.com/fichiers/2015/22/1432748455-likebutton.png" />
+                <img ng-if="cards.length>=1" id="iconLike" on-touch="buttonLikePressed($index,cards[0].id)" on-release="buttonLikeReleased()" class="main-btn_like" src="http://image.noelshack.com/fichiers/2015/22/1432748455-likebutton.png" />
             </div>
 
-            <br/><br/><br/><br/><br/><strong  ng-if="cards.length===0" ng-click="refreshPhotos()"><center><h1 style="font-size:28px;">NO CARDS PLZ UPDATE</h1></center></strong>
         </ion-side-menu-content>
 
         <!-- Menu -->

@@ -11,7 +11,7 @@ angular.module('buffalo')
             login();
             geoLoc();
             $scope.cards=[];
-            $scope.refresh_image='http://i.imgur.com/oRZHwk4.png';
+            $scope.refresh_image='/img/buffalo_refresh.png';
             });
 
         $scope.toggleLeft = function() {
@@ -47,6 +47,7 @@ angular.module('buffalo')
                 geoLoc();
             }
             else {
+                $scope.refresh_image='/img/logo_refresh.png';
                 InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
                 //InterfaceAPI.getPhotos(16, $scope.lat, $scope.long) // test avec un user ID en dur
                     .then(function (data) {
@@ -80,7 +81,7 @@ angular.module('buffalo')
 
                         }
                         else {
-
+                            $scope.refresh_image='/img/buffalo_refresh.png';
                         }
                     });
             }

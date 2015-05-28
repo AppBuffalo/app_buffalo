@@ -32,7 +32,6 @@ angular.module('buffalo', ['ionic', 'ngCordova', 'ngDialog', 'ui.bootstrap'])
         $urlRouterProvider.otherwise('/main');
 
     })
-
     .run(function($ionicPlatform,$window) {
         $ionicPlatform.ready(function() {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

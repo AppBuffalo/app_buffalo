@@ -67,7 +67,8 @@ angular.module('buffalo')
             }
             else {
                 $scope.refresh_image='/img/logo_refresh.gif';
-                InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
+                InterfaceAPI.getPhotos(15,$scope.lat,$scope.long) // test avec l'user ID
+               // InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
                     .then(function (data) {
                         //console.log("GETPHOTOS :   " + JSON.stringify(data, null, 4));
 

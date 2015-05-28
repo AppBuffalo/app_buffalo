@@ -5,10 +5,12 @@
             <img class="main-btn_menu" src="/img/menu.png" ng-click="toggleLeft()"/>
 
             <div class="full-screen-image" ng-if="cards.length>=1" style="background: url('{{ cards[0].url }}') no-repeat center center fixed; background-size: cover;"></div>
-            <div class="full-screen-image-refresh" ng-if="cards.length===0" ng-click="refreshPhotos()"></div>
+            <div class="full-screen-image" ng-if="cards.length===0" ng-click="refreshPhotos()"  style="background: url('{{ refresh_image }}') no-repeat center center fixed; background-size: cover" ></div>
 
             <div>
                 <img class="main-black_overlay" src="/img/blackoverlay.png" />
+                <div ng-if="cards[0].score!==undefined" style="width: 100%; position: absolute; z-index: 20;"><p align="center" style="top:3%; font-size: 34px; font-weight: 600; padding-top:10px;">{{cards[0].score}}</p></div>
+
 
                 <img ng-if="cards.length>=1" id="iconNope" class="main-btn_nope" on-touch="buttonNopePressed($index,cards[0].id)" on-release="buttonNopeReleased()" src="/img/nopeButton.png" />
                 <img id="iconTakePhoto" class="main-btn_takePhoto" on-touch="buttonTakePhotoPressed()"
@@ -26,7 +28,7 @@
                 <p id="score-title">Mon score</p>
                 <p id="score-number">{{ user_score }}</p>
             </div>
-            <!--
+            <!-- TODO
             <div class="margin-top-17">
                 <ion-list>
                     <ion-item id="menu-inviterAmis" menu-close href="#/comment" class="ion-item-custom" align="center">

@@ -4,16 +4,7 @@
             <!-- Main View -->
             <img class="main-btn_menu" src="http://image.noelshack.com/fichiers/2015/22/1432746135-menu.png" ng-click="toggleLeft()"/>
 
-            <td-cards>
-                <td-card ng-repeat="card in cards" on-destroy="cardDestroyed('$index')"  on-swipe-left="cardSwipedLeft($index,card.id)" on-swipe-right="cardSwipedRight($index,card.id)">
-                    <div class="no-text">NOPE</div>
-                    <img ng-src="{{ card.url }}">
-                    <div class="score">
-                        <p align="center" id="score-{{ card.id }}" class="odometer">{{ card.score }}</p>
-                    </div>
-                    <div class="yes-text">LIKE</div>
-                </td-card>
-            </td-cards>
+            <div class="full-screen-image" style="background: url('{{ image_uri }}') no-repeat center center fixed; background-size: cover;"></div>
 
             <div>
                 <img class="main-black_overlay" src="http://image.noelshack.com/fichiers/2015/22/1432746744-blackoverlay.png" />
@@ -35,6 +26,7 @@
                 <p id="score-title">Score</p>
                 <p id="score-number">{{ user_score }}</p>
             </div>
+            <!--
             <div class="margin-top-17">
                 <ion-list>
                     <ion-item id="menu-inviterAmis" menu-close href="#/comment" class="ion-item-custom" align="center">
@@ -42,6 +34,7 @@
                     </ion-item>
                 </ion-list>
             </div>
+            -->
         </ion-side-menu>
     </ion-side-menus>
 </ion-content>

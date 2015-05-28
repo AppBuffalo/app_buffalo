@@ -17,12 +17,8 @@ body{
 .full-screen-image{
     height:100%;
     width: 100%;
-    background: url('http://image.noelshack.com/fichiers/2015/22/1432762078-19690-1625087147705253-2566051714562027561-n.jpg') no-repeat center center fixed;
     background-size: cover;
 }
-
-
-
 
 /***
     Cartes Tinder Like

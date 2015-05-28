@@ -9,17 +9,8 @@ angular.module('buffalo')
             $scope.lat = $stateParams.latitude;
             $scope.long = $stateParams.longitude;
             $scope.user_id = $stateParams.user_id;
-            document.getElementById("form-comment").focus();
         });
 
-        $scope.ajouterCommentaire = function(){
-            if(document.getElementById("form-comment").style.visibility === "visible"){
-                document.getElementById("form-comment").style.visibility = "hidden";
-            }else{
-                document.getElementById("form-comment").style.visibility = "visible";
-                document.getElementById("form-comment").click().focus();
-            }
-        };
 
         $scope.retourMain = function(){
             $ionicViewSwitcher.nextDirection('back');
@@ -45,11 +36,11 @@ angular.module('buffalo')
                             }, function(data){
                                 console.log("erreur envois photo api");
                         });
-                        $scope.go("main");
-
                     }, function(err) {
                         console.log(err);
                     });
+
+            $scope.go("main");
         };
     });
 

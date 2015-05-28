@@ -1,7 +1,7 @@
 <ion-content scroll="false">
-    <div class="full-screen-image" on-tap="ajouterCommentaire()" ng-style=""></div>
+    <div class="full-screen-image" style="background: url('{{ image_uri }}') no-repeat center center fixed; background-size: cover;"></div>
     <!--<input id="form-comment" class="form-comment" type="text" placeholder="Ajoutez un commentaire (optionnel)" maxlength="140"> -->
-
+    <p>{{image_uri}}</p>
     <img class="comment-btn_close" src="http://image.noelshack.com/fichiers/2015/22/1432761067-cancelbutton.png" on-tap="retourMain()"/>
     <img class="comment-btn_send" src="http://image.noelshack.com/fichiers/2015/22/1432761386-buttonsend.png" on-tap="envoyerPhoto()" />
 </ion-content>

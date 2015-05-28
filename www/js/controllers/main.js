@@ -10,6 +10,9 @@ angular.module('buffalo')
             //Si oui alors l'id de l'utilisateur doit être stocké dans l'app
             login();
             geoLoc();
+
+            $scope.image_uri = "http://res.cloudinary.com/dbqbmbcvg/image/upload/v1432775371/tpvclnv0auyqktfc2cww.jpg";
+
             $scope.cards=[];
             });
 
@@ -114,6 +117,7 @@ angular.module('buffalo')
             }
         };
 
+        
         $scope.uploadPhotos = function(){
             InterfaceAPI.uploadPhoto($scope.user_id,$scope.lat, $scope.long,'http://i.imgur.com/mheXQuK.jpg?1','')
                 .then( function(data) {

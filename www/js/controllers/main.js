@@ -3,7 +3,9 @@
 
 angular.module('buffalo')
 
-    .controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice, $http, $state, $window, $cordovaCamera, InterfaceAPI, ngDialog, $ionicSideMenuDelegate){
+    .controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice, $http, $state, $window,
+                                     $cordovaCamera, InterfaceAPI, ngDialog, $cordovaFile,
+                                     $cordovaFileTransfer, $ionicSideMenuDelegate){
 
         $ionicPlatform.ready(function() {
             //Vérification si l'utilisateur a déjà utilisé l'app
@@ -28,10 +30,27 @@ angular.module('buffalo')
         };
 
         $scope.takePicture = function(){
-            $cordovaCamera.getPicture().then(function(imageURI){
-                console.log(imageURI);
-                $scope.image_url = imageURI;
-                $state.go("comment", {imageURI: imageURI, user_id: $scope.user_id, latitude: $scope.lat, longitude: $scope.long});
+
+            var uploadOptions = {
+                params : { 'upload_preset': "hfrgicap"}
+            };
+
+            $cordovaCamera.getPicture()
+                .then(function(imageURI){
+                    console.log(imageURI);
+                    $scope.image_url = imageURI;
+
+                    $cordovaFileTransfer
+                        .upload("https://api.cloudinary.com/v1_1/dbqbmbcvg/image/upload", $scope.image_url, uploadOptions)
+                            .then(function(result) {
+                                var response = JSON.parse(result.response);
+                                var url = response.secure_url;
+
+                                $state.go("comment", {imageURI: url, user_id: $scope.user_id, latitude: $scope.lat, longitude: $scope.long});
+                            }, function(err) {
+                                console.log(err);
+                            });
+
             }, function(err){
                 console.log(err);
             }, {
@@ -47,9 +66,8 @@ angular.module('buffalo')
                 geoLoc();
             }
             else {
-                $scope.refresh_image='/img/logo_refresh.png';
+                $scope.refresh_image='/img/logo_refresh.gif';
                 InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
-                //InterfaceAPI.getPhotos(16, $scope.lat, $scope.long) // test avec un user ID en dur
                     .then(function (data) {
                         //console.log("GETPHOTOS :   " + JSON.stringify(data, null, 4));
 
@@ -188,8 +206,6 @@ angular.module('buffalo')
         }
 
         $scope.modalGPS = function () {
-
-
             console.log("called");
 
 

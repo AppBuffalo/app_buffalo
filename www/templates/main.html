@@ -5,7 +5,7 @@
             <img class="main-btn_menu" src="/img/menu.png" ng-click="toggleLeft()"/>
 
             <div class="full-screen-image" ng-if="cards.length>=1" style="background: url('{{ cards[0].url }}') no-repeat center center fixed; background-size: cover;"></div>
-            <div class="full-screen-image" ng-if="cards.length===0" ng-click="refreshPhotos()" style="background: url('{{ refresh_image }}') no-repeat center center fixed; background-size: cover;"></div>
+            <div class="full-screen-image-refresh" ng-if="cards.length===0" ng-click="refreshPhotos()"></div>
 
             <div>
                 <img class="main-black_overlay" src="/img/blackoverlay.png" />

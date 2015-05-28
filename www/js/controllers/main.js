@@ -201,6 +201,4 @@ angular.module('buffalo')
 
         };
 
-
-
 });

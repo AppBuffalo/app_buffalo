@@ -2,13 +2,13 @@
     <ion-side-menus>
         <ion-side-menu-content>
             <!-- Main View -->
-            <img class="main-btn_menu" src="http://image.noelshack.com/fichiers/2015/22/1432746135-menu.png" ng-click="toggleLeft()"/>
+            <img class="main-btn_menu" src="/img/menu.png" ng-click="toggleLeft()"/>
 
             <div class="full-screen-image" ng-if="cards.length>=1" style="background: url('{{ cards[0].url }}') no-repeat center center fixed; background-size: cover;"></div>
             <div class="full-screen-image" ng-if="cards.length>=1" style="background: url('{{ refresh_image }}') no-repeat center center fixed; background-size: cover;"></div>
 
             <div>
-                <img class="main-black_overlay" src="http://image.noelshack.com/fichiers/2015/22/1432746744-blackoverlay.png" />
+                <img class="main-black_overlay" src="/img/blackoverlay.png" />
 
                 <img ng-if="cards.length>=1" id="iconNope" class="main-btn_nope" on-touch="buttonNopePressed($index,cards[0].id)" on-release="buttonNopeReleased()" src="http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png" />
                 <img id="iconTakePhoto" class="main-btn_takePhoto" on-touch="buttonTakePhotoPressed()"
@@ -22,7 +22,7 @@
         <!-- Menu -->
         <ion-side-menu side="left" class="main-side_menu">
             <div class="width-100" align="center">
-                <img class="main-side_menu-image" src="http://image.noelshack.com/fichiers/2015/22/1432734784-avatar.png" />
+                <img class="main-side_menu-image" src="/img/avatar.png" />
                 <p id="score-title">Score</p>
                 <p id="score-number">{{ user_score }}</p>
             </div>
@@ -42,7 +42,7 @@
 <script type="text/ng-template" id="gpsDialog">
     <div class="ngdialog-message">
         <h2>Veuillez activer votre GPS</h2>
-        <div>L'application néscéssite l'accèsù au GPS pour récupérer les photos des autres utilisateurs près de vous. Veuillez activer le GPS dans les paramètres de votre téléphone</div>
+        <div>L'application nécessite l'accès au GPS pour récupérer les photos des autres utilisateurs près de vous. Veuillez activer le GPS dans les paramètres de votre téléphone</div>
     </div>
     <div class="ngdialog-buttons mt">
         <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm()">OK</button>

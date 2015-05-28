@@ -9,13 +9,14 @@ angular.module('buffalo')
             $scope.lat = $stateParams.latitude;
             $scope.long = $stateParams.longitude;
             $scope.user_id = $stateParams.user_id;
-            $scope.images = [];
 
 
-            console.log('URL' +$scope.image_uri);
+
+            //$scope.images = [];
+           // console.log('URL' +$scope.image_uri);
         });
 
-
+/*
 
         onImageSuccess($scope.image_uri);
 
@@ -71,61 +72,40 @@ angular.module('buffalo')
                 }
 
             };
+*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$scope.retourMain = function(){
-            $ionicViewSwitcher.nextDirection('back');
-            $state.go("main");
-        };
-
-        $scope.envoyerPhoto = function(){
-
-            console.log("Envoyer photo");
-
-            var uploadOptions = {
-                params : { 'upload_preset': "hfrgicap"}
+    $scope.retourMain = function(){
+                $ionicViewSwitcher.nextDirection('back');
+                $state.go("main");
             };
 
-            $cordovaFileTransfer
-                .upload("https://api.cloudinary.com/v1_1/dbqbmbcvg/image/upload", $scope.image_uri, uploadOptions)
-                    .then(function(result) {
-// TODO V2                        var comment = document.getElementById('form-comment').value;
-                        var response = JSON.parse(result.response);
-                        var url = response.secure_url;
+    $scope.envoyerPhoto = function(){
 
-                        InterfaceAPI.uploadPhoto($scope.user_id, $scope.lat, $scope.long, url, '')
-                        //TODO V2 InterfaceAPI.uploadPhoto($scope.user_id, $scope.lat, $scope.long, url, comment)
-                            .then(function(data){
-                                console.log("photo envoyée");
-                            }, function(data){
-                                console.log("erreur envois photo api");
+                console.log("Envoyer photo");
+
+                var uploadOptions = {
+                    params : { 'upload_preset': "hfrgicap"}
+                };
+
+                $cordovaFileTransfer
+                    .upload("https://api.cloudinary.com/v1_1/dbqbmbcvg/image/upload", $scope.image_uri, uploadOptions)
+                        .then(function(result) {
+    // TODO V2                        var comment = document.getElementById('form-comment').value;
+                            var response = JSON.parse(result.response);
+                            var url = response.secure_url;
+
+                            InterfaceAPI.uploadPhoto($scope.user_id, $scope.lat, $scope.long, url, '')
+                            //TODO V2 InterfaceAPI.uploadPhoto($scope.user_id, $scope.lat, $scope.long, url, comment)
+                                .then(function(data){
+                                    console.log("photo envoyée");
+                                }, function(data){
+                                    console.log("erreur envois photo api");
+                            });
+                        }, function(err) {
+                            console.log(err);
                         });
-                    }, function(err) {
-                        console.log(err);
-                    });
 
-            //$scope.go("main");
-        };
-    });
+                $scope.retourMain();
+            };
+});
 

@@ -117,7 +117,7 @@ angular.module('buffalo')
             }
         };
 
-        
+
         $scope.uploadPhotos = function(){
             InterfaceAPI.uploadPhoto($scope.user_id,$scope.lat, $scope.long,'http://i.imgur.com/mheXQuK.jpg?1','')
                 .then( function(data) {
@@ -201,27 +201,27 @@ angular.module('buffalo')
         };
 
     $scope.buttonTakePhotoPressed = function(){
-        document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432759126-buttoncamerapressed.png";
+        document.getElementById("iconTakePhoto").src = "/img/buttoncamerapressed.png";
     };
 
     $scope.buttonTakePhotoReleased = function(){
-        document.getElementById("iconTakePhoto").src = "http://image.noelshack.com/fichiers/2015/22/1432747209-takephoto.png";
+        document.getElementById("iconTakePhoto").src = "/img/takephoto.png";
     };
 
     $scope.buttonNopePressed = function(){
-        document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432759798-nopebuttonpressed.png";
+        document.getElementById("iconNope").src = "/img/nopebuttonpressed.png";
     };
 
     $scope.buttonNopeReleased = function(){
-        document.getElementById("iconNope").src = "http://image.noelshack.com/fichiers/2015/22/1432748078-nopebutton.png";
+        document.getElementById("iconNope").src = "/img/nopebutton.png";
     };
 
     $scope.buttonLikePressed = function(){
-        document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432760261-buttonlikepressed.png";
+        document.getElementById("iconLike").src = "/img/buttonlikepressed.png";
     };
 
     $scope.buttonLikeReleased = function(){
-        document.getElementById("iconLike").src = "http://image.noelshack.com/fichiers/2015/22/1432748455-likebutton.png";
+        document.getElementById("iconLike").src = "/img/likebutton.png";
     };
 
 });

@@ -19,6 +19,8 @@ angular.module('buffalo')
 
         $scope.envoyerPhoto = function(){
 
+            console.log("Envoyer photo");
+
             var uploadOptions = {
                 params : { 'upload_preset': "hfrgicap"}
             };

@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('buffalo')
-    .controller('CommentCtrl', function($scope, $stateParams, $ionicPlatform, $state,
+controllers.controller('CommentCtrl', function($scope, $stateParams, $ionicPlatform, $state,
                                                $ionicViewSwitcher, $cordovaFile, $cordovaFileTransfer, InterfaceAPI){
 
         $ionicPlatform.ready(function() {

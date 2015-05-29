@@ -6,10 +6,21 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('buffalo', ['ionic', 'ngCordova', 'ngDialog', 'ui.bootstrap'])
+var app = angular.module('buffalo', ['ionic', 'ngCordova', 'buffalo.controllers']);
 
 
-    .config(function($stateProvider, $urlRouterProvider) {
+app.run(function($ionicPlatform,$window) {
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if ($window.cordova && $window.cordova.plugins && $window.cordova.plugins.Keyboard) {
+            $window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        StatusBar.hide();
+    });
+});
+
+    app.config(function($stateProvider, $urlRouterProvider) {
 
         // Ionic uses AngularUI Router which uses the concept of states
         // Learn more here: https://github.com/angular-ui/ui-router
@@ -31,16 +42,8 @@ angular.module('buffalo', ['ionic', 'ngCordova', 'ngDialog', 'ui.bootstrap'])
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/main');
 
-    })
-    .run(function($ionicPlatform,$window) {
-        $ionicPlatform.ready(function() {
-            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-            // for form inputs)
-            if ($window.cordova && $window.cordova.plugins && $window.cordova.plugins.Keyboard) {
-                $window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            }
-            StatusBar.hide();
-        });
     });
+
+var controllers = angular.module('buffalo.controllers', []);
 
 

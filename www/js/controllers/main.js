@@ -1,10 +1,7 @@
 'use strict';
 
-
-angular.module('buffalo')
-
-    .controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice, $http, $state, $window,
-                                     $cordovaCamera, InterfaceAPI, ngDialog, $cordovaFile,
+controllers.controller('MainCtrl', function($scope, $ionicPlatform, $rootScope, $cordovaDevice, $http, $state, $window,
+                                     $cordovaCamera, InterfaceAPI, $cordovaFile,
                                      $cordovaFileTransfer, $ionicSideMenuDelegate){
 
         $ionicPlatform.ready(function() {
@@ -210,16 +207,7 @@ angular.module('buffalo')
             console.log("called");
 
 
-            ngDialog.openConfirm({
-                template: 'gpsDialog',
-                className: 'ngdialog-theme-default ngdialog-theme-custom'
-            })
-            .then(function () {
-                    geoLoc();
-            }, function () {
-                    geoLoc();
-            });
-
+           geoLoc();
         };
 
 });

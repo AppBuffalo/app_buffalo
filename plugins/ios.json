@@ -145,10 +145,10 @@
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
-        "cordova-plugin-whitelist": {
+        "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         },
-        "org.apache.cordova.statusbar": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "fr.geselle.buffaloapp"
         }
     },

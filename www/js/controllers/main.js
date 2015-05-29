@@ -73,7 +73,6 @@ angular.module('buffalo')
                             $scope.cards = [];
                             var newCard = {id: '', url: '', comment: '', score: 0};
                             angular.forEach(data, function (card) {
-
                                 if (card.comment === null) {
                                     card.comment = '';
                                 }
@@ -90,7 +89,6 @@ angular.module('buffalo')
                             $scope.cards = $scope.cards.sort(function (a, b) {
                                 return b.id - a.id;
                             });
-
                         }
                         else {
                             $scope.refresh_image='img/buffalo_refresh.png';
@@ -129,8 +127,7 @@ angular.module('buffalo')
         $scope.buttonLikePressed = function(index,card_id){
             document.getElementById("iconLike").src = "img/buttonLikePressed.png";
             $scope.cards.splice(index, 1);
-
-            InterfaceAPI.swipeNope($scope.user_id, card_id)
+            InterfaceAPI.swipeLike($scope.user_id, card_id)
                 .then(function () {
                     if ($scope.cards.length <= 2) {
                         $scope.refreshPhotos();

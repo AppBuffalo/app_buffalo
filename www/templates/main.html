@@ -2,24 +2,24 @@
     <ion-side-menus>
         <ion-side-menu-content>
             <!-- Main View -->
-            <img class="main-btn_menu" src="/img/menu.png" ng-click="toggleLeft()"/>
+            <img class="main-btn_menu" src="img/menu.png" ng-click="toggleLeft()"/>
 
             <div class="full-screen-image" ng-if="cards.length>=1" style="background: url('{{ cards[0].url }}') no-repeat center center fixed; background-size: cover;"></div>
             <div class="full-screen-image" ng-if="cards.length===0" ng-click="refreshPhotos()"  style="background: url('{{ refresh_image }}') no-repeat center center fixed; background-size: cover" ></div>
 
             <div>
-                <img class="main-black_overlay" src="/img/blackoverlay.png" />
+                <img class="main-black_overlay" src="img/blackoverlay.png" />
 
                 <div class="width-100 main-score-container">
-                    <p align="center" class="main-score">359</p>
+                    <p ng-if=" cards[0].score>=0" align="center" class="main-score">{{ cards[0].score }}</p>
                 </div>
 
 
-                <img ng-if="cards.length>=1" id="iconNope" class="main-btn_nope" on-touch="buttonNopePressed($index,cards[0].id)" on-release="buttonNopeReleased()" src="/img/nopeButton.png" />
+                <img ng-if="cards.length>=1" id="iconNope" class="main-btn_nope" on-touch="buttonNopePressed($index,cards[0].id)" on-release="buttonNopeReleased()" src="img/nopeButton.png" />
                 <img id="iconTakePhoto" class="main-btn_takePhoto" on-touch="buttonTakePhotoPressed()"
                      on-release="buttonTakePhotoReleased()" on-tap="takePicture()"
-                     src="/img/takePhoto.png" />
-                <img ng-if="cards.length>=1" id="iconLike" on-touch="buttonLikePressed($index,cards[0].id)" on-release="buttonLikeReleased()" class="main-btn_like" src="/img/likeButton.png" />
+                     src="img/takePhoto.png" />
+                <img ng-if="cards.length>=1" id="iconLike" on-touch="buttonLikePressed($index,cards[0].id)" on-release="buttonLikeReleased()" class="main-btn_like" src="img/likeButton.png" />
             </div>
 
         </ion-side-menu-content>
@@ -27,7 +27,7 @@
         <!-- Menu -->
         <ion-side-menu side="left" class="main-side_menu">
             <div class="width-100" align="center">
-                <img class="main-side_menu-image" src="/img/avatar.png" />
+                <img class="main-side_menu-image" src="img/avatar.png" />
                 <p id="score-title">Mon score</p>
                 <p id="score-number">{{ user_score }}</p>
             </div>

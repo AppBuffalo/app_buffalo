@@ -13,7 +13,7 @@ angular.module('buffalo')
             login();
             geoLoc();
             $scope.cards=[];
-            $scope.refresh_image='/img/buffalo_refresh.png';
+            $scope.refresh_image='img/buffalo_refresh.png';
             });
 
         $scope.toggleLeft = function() {
@@ -37,7 +37,6 @@ angular.module('buffalo')
 
             $cordovaCamera.getPicture()
                 .then(function(imageURI){
-                    console.log(imageURI);
                     $scope.image_url = imageURI;
 
                     $cordovaFileTransfer
@@ -66,11 +65,9 @@ angular.module('buffalo')
                 geoLoc();
             }
             else {
-                $scope.refresh_image='/img/logo_refresh.gif';
-                InterfaceAPI.getPhotos(15,$scope.lat,$scope.long) // test avec l'user ID
-               // InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
+                $scope.refresh_image='img/logo_refresh.gif';
+                InterfaceAPI.getPhotos($scope.user_id,$scope.lat,$scope.long) // test avec l'user ID
                     .then(function (data) {
-                        //console.log("GETPHOTOS :   " + JSON.stringify(data, null, 4));
 
                         if (data.length > 0) {
                             $scope.cards = [];
@@ -87,40 +84,36 @@ angular.module('buffalo')
                                     comment: card.comment.toString(),
                                     score: card.score
                                 };
-                                //console.log("NEWCARD :   " + JSON.stringify(newcard, null, 4));
                                 $scope.cards.push(newCard);
 
                             });
-                            //console.log("SCOPE.CARDS :   " + JSON.stringify($scope.cards, null, 4));
                             $scope.cards = $scope.cards.sort(function (a, b) {
                                 return b.id - a.id;
                             });
-                            console.log("SCOPE.CARDS :   " + JSON.stringify($scope.cards, null, 4));
 
                         }
                         else {
-                            $scope.refresh_image='/img/buffalo_refresh.png';
+                            $scope.refresh_image='img/buffalo_refresh.png';
                         }
                     }, function() {
 
-                        $scope.refresh_image='/img/buffalo_refresh.png';
+                        $scope.refresh_image='img/buffalo_refresh.png';
 
                     });
             }
         };
 
         $scope.buttonTakePhotoPressed = function(){
-            document.getElementById("iconTakePhoto").src = "/img/buttonCameraPressed.png";
+            document.getElementById("iconTakePhoto").src = "img/buttonCameraPressed.png";
         };
 
         $scope.buttonTakePhotoReleased = function(){
-            document.getElementById("iconTakePhoto").src = "/img/takePhoto.png";
+            document.getElementById("iconTakePhoto").src = "img/takePhoto.png";
         };
 
         $scope.buttonNopePressed = function(index,card_id){
-            document.getElementById("iconNope").src = "/img/nopeButtonPressed.png";
+            document.getElementById("iconNope").src = "img/nopeButtonPressed.png";
             $scope.cards.splice(index, 1);
-            //InterfaceAPI.swipeNope(16,card_id)
             InterfaceAPI.swipeNope($scope.user_id, card_id)
                 .then(function () {
                     if ($scope.cards.length <= 2) {
@@ -130,14 +123,13 @@ angular.module('buffalo')
         };
 
         $scope.buttonNopeReleased = function(){
-            document.getElementById("iconNope").src = "/img/nopeButton.png";
+            document.getElementById("iconNope").src = "img/nopeButton.png";
         };
 
         $scope.buttonLikePressed = function(index,card_id){
-            document.getElementById("iconLike").src = "/img/buttonLikePressed.png";
+            document.getElementById("iconLike").src = "img/buttonLikePressed.png";
             $scope.cards.splice(index, 1);
 
-            //InterfaceAPI.swipeLike(16,card_id)
             InterfaceAPI.swipeNope($scope.user_id, card_id)
                 .then(function () {
                     if ($scope.cards.length <= 2) {
@@ -147,7 +139,7 @@ angular.module('buffalo')
         };
 
         $scope.buttonLikeReleased = function(){
-            document.getElementById("iconLike").src = "/img/likeButton.png";
+            document.getElementById("iconLike").src = "img/likeButton.png";
         };
 
 
@@ -174,8 +166,7 @@ angular.module('buffalo')
                     $scope.user_id = data.id;
                 window.localStorage.user_id = data.id;
 
-            }, function(data)        {
-                console.log(data);
+            }, function()        {
                 $scope.user_id = "";
             });
 
@@ -198,7 +189,6 @@ angular.module('buffalo')
             }
 
             function error(err) {
-                console.warn('ERROR(' + err.code + '): ' + err.message);
                 $scope.modalGPS();
             }
 
@@ -207,7 +197,6 @@ angular.module('buffalo')
         }
 
         $scope.modalGPS = function () {
-            console.log("called");
 
 
             ngDialog.openConfirm({
